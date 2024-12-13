@@ -1,0 +1,47 @@
+main {
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-left: 10px;
+    display: flex;
+    width: 100%;
+}
+
+#menu-container {
+    margin-top: 5rem;
+    width: 250px;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    height: 85vh;
+}
+
+#content-container {
+    margin-top: 5rem;
+    flex: 1;
+    padding: 20px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+#menu-container ul {
+    list-style-type: none; /* Oculta los puntos de la lista */
+}
+
+#menu-container .folder {
+    cursor: pointer; /* Cambia el cursor a mano al pasar por folders */
+    font-weight: bold;
+}
+
+#menu-container .file {
+    font-weight: normal;
+}
+
+#menu-container .folder > ul {
+    display: none; /* Oculta las sublistas por defecto */
+}
+
+#menu-container > li {
+    border-bottom: #ccc 1px solid;
+}
+
+
