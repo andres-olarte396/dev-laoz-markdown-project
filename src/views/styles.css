@@ -6,6 +6,15 @@ main {
     width: 100%;
 }
 
+#actions-container {
+    margin-top: 5rem;
+    width: 250px;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    height: 85vh;
+}
+
 #menu-container {
     margin-top: 5rem;
     width: 250px;

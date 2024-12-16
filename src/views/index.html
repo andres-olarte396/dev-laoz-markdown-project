@@ -12,7 +12,6 @@
     <link rel="icon" href="http://localhost:8080/dev-laoz-WaveArtCSS/assets/favicons/favicon.png" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-</head>
 
 <body>
     <!-- Header -->
@@ -30,15 +29,34 @@
             </ul>
         </nav>
     </header>
+
     <!-- Main Content -->
     <main>
-        <div id="menu-container"></div>
-        <div id="content-container"></div>
+        <!-- Contenedor de acciones -->
+        <section id="actions-container" aria-labelledby="actions-title">
+            <h2 id="actions-title">Actions</h2>
+            <button id="create-file" class="btn btn-primary">Create File</button>
+            <button id="edit-file" class="btn btn-secondary">Edit File</button>
+            <button id="delete-file" class="btn btn-danger">Delete File</button>
+        </section>
+
+        <!-- Contenedor del menú -->
+        <section id="menu-container" aria-labelledby="menu-title">
+            <h2 id="menu-title">Menu</h2>
+        </section>
+
+        <!-- Contenedor del contenido -->
+        <section id="content-container" aria-labelledby="content-title">
+            <h2 id="content-title">Content</h2>
+        </section>
     </main>
+
     <!-- Footer -->
     <footer>
         <span>© 2024 Mi Negocio. Todos los derechos reservados.</span>
     </footer>
+
+    <!-- Scripts -->
     <script src="main.js"></script>
 </body>
 
