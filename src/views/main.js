@@ -1,61 +1,64 @@
 // Carga el menú y el contenido
 async function loadMenu() {
   try {
-      const response = await fetch("/api/menu");
-      if (!response.ok) {
-          throw new Error(`Error en la carga del menú: ${response.statusText}`);
-      }
-      const menu = await response.json();
+    const response = await fetch("/api/menu");
+    if (!response.ok) {
+      throw new Error(`Error en la carga del menú: ${response.statusText}`);
+    }
+    const menu = await response.json();
 
-      // Si la respuesta tiene una estructura como { data: [...] }
-      const menuData = Array.isArray(menu) ? menu : menu.data || [];
-      renderMenu(menuData);
+    // Si la respuesta tiene una estructura como { data: [...] }
+    const menuData = Array.isArray(menu) ? menu : menu.data || [];
+    renderMenu(menuData);
   } catch (error) {
-      console.error("Error al cargar el menú:", error);
+    console.error("Error al cargar el menú:", error);
   }
 }
 
+// Renderiza el menú en el DOM
 function renderMenu(files) {
   const container = document.getElementById("menu-container");
   container.innerHTML = "";
   createMenuList(container, files);
 }
 
+// Crea una lista
 function createMenuList(container, menu) {
   if (!Array.isArray(menu)) {
-      console.error("El menú no es un array:", menu);
-      return;
+    console.error("El menú no es un array:", menu);
+    return;
   }
 
   const list = document.createElement("ul");
   container.appendChild(list);
 
   menu.forEach((item) => {
-      const element = document.createElement("li");
-      element.textContent = item.name;
-      element.className = item.isDirectory ? "folder" : "file";
+    const element = document.createElement("li");
+    element.textContent = item.name;
+    element.className = item.isDirectory ? "folder" : "file";
 
-      if (item.isDirectory && Array.isArray(item.children)) {
-          createMenuList(element, item.children);
-      }
+    if (item.isDirectory && Array.isArray(item.children)) {
+      createMenuList(element, item.children);
+    }
 
-      element.onclick = () => {
-          element.addEventListener("click", function (event) {
-              if (event.target === this) {
-                  loadContent(item.path);
-                  const childList = this.querySelector(":scope > ul");
-                  if (childList) {
-                      childList.style.display =
-                          childList.style.display === "block" ? "none" : "block";
-                  }
-              }
-          });
-      };
+    element.onclick = () => {
+      element.addEventListener("click", function (event) {
+        if (event.target === this) {
+          loadContent(item.path);
+          const childList = this.querySelector(":scope > ul");
+          if (childList) {
+            childList.style.display =
+              childList.style.display === "block" ? "none" : "block";
+          }
+        }
+      });
+    };
 
-      list.appendChild(element);
+    list.appendChild(element);
   });
 }
 
+// Carga el contenido de un archivo Markdown
 async function loadContent(path) {
   try {
     const response = await fetch(path);

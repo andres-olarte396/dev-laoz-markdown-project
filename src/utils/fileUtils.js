@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// Leer un archivo
+// 1. Leer un archivo
 function readFile(filePath) {
     try {
         return fs.readFileSync(filePath, 'utf8');
@@ -10,9 +10,16 @@ function readFile(filePath) {
     }
 }
 
-// Crear un archivo
+// 2. Crear un archivo
 function createFile(filePath, content) {
     try {
+        // Crear la carpeta si no existe
+        const dir = path.dirname(filePath);
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+
+        // Crear el archivo si no existe
         fs.writeFileSync(filePath, content, { flag: 'wx' }); // `wx` para evitar sobrescribir archivos existentes
         return { message: 'Archivo creado con éxito', filePath };
     } catch (error) {
@@ -23,7 +30,7 @@ function createFile(filePath, content) {
     }
 }
 
-// Editar un archivo
+// 3. Editar un archivo
 function editFile(filePath, content) {
     try {
         if (!fs.existsSync(filePath)) {
@@ -36,7 +43,7 @@ function editFile(filePath, content) {
     }
 }
 
-// Listar todos los archivos .md en un directorio y subdirectorios
+// 4. Listar todos los archivos .md en un directorio y subdirectorios
 function listFiles(rootPath, directoryPath = rootPath) {
     try {
         let filesList = [];
@@ -63,7 +70,7 @@ function listFiles(rootPath, directoryPath = rootPath) {
     }
 }
 
-// Eliminar un archivo
+// 5. Eliminar un archivo
 function deleteFile(filePath) {
     try {
         if (!fs.existsSync(filePath)) {
