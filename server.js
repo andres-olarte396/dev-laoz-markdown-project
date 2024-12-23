@@ -1,16 +1,21 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const bodyParser = require('body-parser');
 const minimist = require('minimist');
-const { readFile, createFile, editFile, listFiles, deleteFile } = require('./src/utils/fileUtils'); // Asegúrate de que el nombre del archivo sea correcto
-const { generateMenu } = require('./src/services/menuService');
+const menuRoutes = require('./src/routes/menuRoutes');
+const fileRoutes = require('./src/routes/fileRoutes');
+const bodyParser = require('body-parser');
+const process = require('dotenv').config();
+
+router.get('/protected', verifyToken, (req, res) => {
+    res.json({ message: 'Acceso autorizado', user: req.user });
+});
 
 // Parseamos los argumentos de la línea de comandos
 const args = minimist(process.argv.slice(2), {
   default: {
     port: 3000,
-    dir: path.join(__dirname, 'public/content')
+    dir: path.join(__dirname, './public')
   }
 });
 
@@ -23,73 +28,21 @@ if (!fs.existsSync(DIRECTORY)) {
 }
 
 const app = express();
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'src/views')));
-app.use('/content', express.static(path.join(__dirname, 'public/content')));
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+// Middleware para parsear JSON
+app.use(express.json());
 
-app.get('/api/menu', (req, res) => {
-  const menu = generateMenu(path.join(__dirname, 'public/content'));
-  res.json(menu);
-});
+// Inicializar Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Crear un archivo Markdown
-app.post('/markdown', (req, res) => {
-  const { filename, content } = req.body;
-  try {
-    const filePath = path.join(DIRECTORY, `/content/${filename}.md`);
-    const result = createFile(filePath, content);
-    res.status(201).json(result);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+// Rutas
+app.use('/api/menu', menuRoutes); // Ruta base para el menú
+app.use('/api/files', fileRoutes); // Ruta base para archivos markdown
 
-// Leer un archivo Markdown
-app.get('/markdown/:filename', (req, res) => {
-  const { filename } = req.params;
-  try {
-    const filePath = path.join(DIRECTORY, `/content/${filename}.md`);
-    const content = readFile(filePath);
-    res.status(200).json({ content });
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-});
-
-// Editar un archivo Markdown
-app.put('/markdown/:filename', (req, res) => {
-  const { filename } = req.params;
-  const { content } = req.body;
-  try {
-    const filePath = path.join(DIRECTORY, `/content/${filename}.md`);
-    const result = editFile(filePath, content);
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Listar todos los archivos Markdown
-app.get('/markdown', (req, res) => {
-  try {
-    const files = listFiles(path.join(DIRECTORY, "/content/"));
-    res.status(200).json({ files });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Eliminar un archivo Markdown
-app.delete('/markdown/:filename', (req, res) => {
-  const { filename } = req.params;
-  try {
-    const filePath = path.join(DIRECTORY, `/content/${filename}.md`);
-    const result = deleteFile(filePath);
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+// Middleware para manejar errores
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Algo salió mal.');
 });
 
 app.listen(PORT, () => {
