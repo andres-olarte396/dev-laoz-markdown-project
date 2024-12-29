@@ -12,7 +12,7 @@ const fileRoutes = require('./src/routes/fileRoutes');
 // Parseamos los argumentos de la línea de comandos
 const args = minimist(process.argv.slice(2), {
   default: {
-    port: 3000,
+    port: 7000,
     dir: path.join(__dirname, './public')
   }
 });
