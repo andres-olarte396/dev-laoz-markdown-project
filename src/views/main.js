@@ -61,7 +61,7 @@ function createMenuList(container, menu) {
 // Carga el contenido de un archivo Markdown
 async function loadContent(path) {
   try {
-    const response = await fetch(path);
+    const response = await fetch("/api/files/"+path);
     const content = await response.text();
     document.getElementById("content-container").innerHTML =
       marked.parse(content);

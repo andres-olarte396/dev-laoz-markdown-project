@@ -13,33 +13,42 @@ const fileRoutes = require('./src/routes/fileRoutes');
 const args = minimist(process.argv.slice(2), {
   default: {
     port: 7000,
-    dir: path.join(__dirname, './public')
+    dir: path.join(__dirname, './public/md')
   }
 });
 
 const PORT = args.port;
-const DIRECTORY = path.resolve(path.join(__dirname, args.dir || './public'));
+const HTML_DIRECTORY = path.resolve(path.join(__dirname, './src'));
+const MD_DIRECTORY = path.resolve(path.join(__dirname, args.dir || './public'));
 
-// Verificar si el directorio existe; si no, crearlo
-if (!fs.existsSync(DIRECTORY)) {
-  fs.mkdirSync(DIRECTORY, { recursive: true });
-}
+// Verificar si los directorios existen; si no, crearlos
+[HTML_DIRECTORY, MD_DIRECTORY].forEach((dir) => {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+});
 
 const app = express();
+
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Rutas
+// Servir archivos HTML desde el directorio `src`
+app.use('/app', express.static(HTML_DIRECTORY));
+
+// Rutas API
 app.use('/api/menu', menuRoutes); // Ruta base para el menú
 app.use('/api/files', fileRoutes); // Ruta base para archivos markdown
 
 // Middleware para manejar errores
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Algo salió mal.');
+  console.error(err.stack);
+  res.status(500).send('Algo salió mal.');
 });
 
+// Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
-  console.log(`Sirviendo archivos desde ${DIRECTORY}`);
+  console.log(`Archivos HTML disponibles en http://localhost:${PORT}/app`);
+  console.log(`Archivos Markdown disponibles en http://localhost:${PORT}/api`);
 });
