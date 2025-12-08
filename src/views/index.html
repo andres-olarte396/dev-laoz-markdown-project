@@ -1,63 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown Menu</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="http://localhost:8080/dev-laoz-WaveArtCSS/src/theme.css" />
-    <link rel="stylesheet" href="http://localhost:8080/dev-laoz-WaveArtCSS/src/base.css" />
-    <link rel="stylesheet" href="http://localhost:8080/dev-laoz-WaveArtCSS/src/components.css" />
-    <link rel="icon" href="http://localhost:8080/dev-laoz-WaveArtCSS/assets/favicons/favicon.png" type="image/x-icon" />
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-</head>
-
-<body>
-    <!-- Header -->
-    <header>
-        <img src="http://localhost:8080/dev-laoz-WaveArtCSS/assets/favicons/favicon.png" alt="Logo de la Compañía"
-            style="width: 50px; height: auto;" />
-        <h1>My Wiki Viewer</h1>
-        <!-- Menu de navegación -->
-        <nav aria-label="Main Navigation">
-            <ul>
-                <li><a href="../">Index</a></li>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Contenedor de acciones -->
-        <section id="actions-container" aria-labelledby="actions-title">
-            <h2 id="actions-title">Actions</h2>
-            <button id="create-file" class="btn btn-primary">Create File</button>
-            <button id="edit-file" class="btn btn-secondary">Edit File</button>
-            <button id="delete-file" class="btn btn-danger">Delete File</button>
-        </section>
-
-        <!-- Contenedor del menú -->
-        <section id="menu-container" aria-labelledby="menu-title">
-            <h2 id="menu-title">Menu</h2>
-        </section>
-
-        <!-- Contenedor del contenido -->
-        <section id="content-container" aria-labelledby="content-title">
-            <h2 id="content-title">Content</h2>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <span>© 2024 Mi Negocio. Todos los derechos reservados.</span>
-    </footer>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plataforma Educativa Dev Laoz</title>
+    <!-- LMS Original Styles -->
+    <link rel="stylesheet" href="style.css" />
 
     <!-- Scripts -->
-    <script src="main.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <h1>Plataforma Educativa</h1>
+          <p class="subtitle">Aprende, Practica y Domina</p>
+        </div>
+        <div class="header-stats">
+          <div class="stat">
+            <span id="apiStatus" style="font-size: 1.2rem">checking...</span>
+            <span class="stat-label" id="backendStatus">Conectando...</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="totalCourses">0</span>
+            <span class="stat-label">Cursos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="totalModules">0</span>
+            <span class="stat-label">Módulos</span>
+          </div>
+        </div>
+      </header>
 
+      <!-- Main Content (Sidebar + Content) -->
+      <div class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <h2>Mis Cursos</h2>
+            <button
+              class="btn-refresh"
+              onclick="loadCourses()"
+              title="Actualizar"
+            >
+              <ion-icon name="refresh-outline"></ion-icon>
+            </button>
+          </div>
+          <div id="courseList" class="course-list">
+            <!-- Course Items Injected Here -->
+            <div class="loading">Cargando cursos...</div>
+          </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content">
+          <!-- Welcome Screen -->
+          <div id="welcomeScreen" class="welcome-screen">
+            <div class="welcome-icon">🎓</div>
+            <h2>Bienvenido a tu Espacio de Aprendizaje</h2>
+            <p>Selecciona un curso del menú lateral para comenzar.</p>
+
+            <div class="features">
+              <div class="feature">
+                <span class="feature-icon">📚</span>
+                <h3>Contenido Estructurado</h3>
+                <p>Accede a cursos organizados por módulos y temas.</p>
+              </div>
+              <div class="feature">
+                <span class="feature-icon">🎧</span>
+                <h3>Audio Integrado</h3>
+                <p>Escucha las lecciones mientras estudias.</p>
+              </div>
+              <div class="feature">
+                <span class="feature-icon">📝</span>
+                <h3>Evaluaciones</h3>
+                <p>Pon a prueba tus conocimientos con quizzes interactivos.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course Detail View -->
+          <div id="courseDetail" class="course-detail" style="display: none">
+            <div class="course-header">
+              <button class="btn-back" onclick="showWelcome()">← Volver</button>
+              <div>
+                <h2 id="courseTitle">Título del Curso</h2>
+                <p id="courseDescription" class="course-description">
+                  Descripción del curso...
+                </p>
+              </div>
+            </div>
+
+            <div class="course-info">
+              <div class="info-item">
+                <span class="info-label">Nivel</span>
+                <span id="courseLevel">Intermedio</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Duración</span>
+                <span id="courseDuration">10h</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Módulos</span>
+                <span id="courseModules">5</span>
+              </div>
+            </div>
+
+            <div class="modules-container">
+              <h3>Contenido del Curso</h3>
+              <div id="modulesList" class="modules-list">
+                <!-- Modules Injected Here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Topic View -->
+          <div id="topicView" class="topic-view" style="display: none">
+            <div class="topic-header-actions">
+              <button
+                class="btn-back-course"
+                onclick="showCourseDetailFromTopic()"
+              >
+                ← Volver al Curso
+              </button>
+              <div style="display: flex; gap: 10px">
+                <button id="btnAudio" class="btn-action" style="display: none">
+                  <ion-icon name="headset-outline"></ion-icon> Escuchar
+                </button>
+                <button
+                  id="btnEvaluation"
+                  class="btn-action btn-eval"
+                  onclick="startQuiz()"
+                  style="display: none"
+                >
+                  <ion-icon name="create-outline"></ion-icon> Realizar Quiz
+                </button>
+              </div>
+            </div>
+
+            <div id="topicContentArea" class="markdown-body">
+              <!-- Markdown Content Injected Here -->
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">Platforma Educativa Dev Laoz &copy; 2025</footer>
+    </div>
+
+    <!-- Audio Player (Persistent) -->
+    <div
+      id="audioPlayerContainer"
+      class="audio-player-container"
+      style="display: none"
+    >
+      <div class="audio-info">
+        <ion-icon name="musical-note" class="audio-icon"></ion-icon>
+        <div class="audio-text">
+          <span id="audioTitle" class="audio-title">Título del Audio</span>
+          <span id="audioStatus" class="audio-status">Reproduciendo...</span>
+        </div>
+      </div>
+      <div class="audio-controls-wrapper">
+        <audio id="mainAudioPlayer" controls></audio>
+      </div>
+      <button class="btn-close-audio" onclick="hideAudioPlayer()">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Evaluación</h2>
+          <span class="close" onclick="closeQuiz()">&times;</span>
+        </div>
+        <div id="quizBody" class="modal-body">
+          <!-- Questions Injected Here -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn-submit-quiz action-btn" onclick="submitQuiz()">
+            Enviar Respuestas
+          </button>
+          <button
+            onclick="closeQuiz()"
+            style="
+              background: transparent;
+              border: 1px solid #666;
+              color: var(--dark);
+              padding: 8px 16px;
+              border-radius: 4px;
+              cursor: pointer;
+              margin-left: 10px;
+            "
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LMS Script -->
+    <script src="app.js"></script>
+  </body>
 </html>

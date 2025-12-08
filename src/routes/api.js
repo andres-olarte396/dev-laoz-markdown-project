@@ -1,6 +1,40 @@
+const express = require('express');
+const router = express.Router();
 const courseController = require('../controllers/courseController');
 const contentController = require('../controllers/contentController');
 const progressController = require('../controllers/progressController');
+const fileTreeService = require('../services/fileTreeService');
+const path = require('path');
+const fs = require('fs');
+
+// ============================================
+// MENU / FILE TREE ROUTES
+// ============================================
+router.get('/menu', (req, res) => {
+    try {
+        const tree = fileTreeService.getMenu();
+        res.json({ data: tree });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to generate menu' });
+    }
+});
+
+router.get('/file/:path(*)', (req, res) => {
+    try {
+        // Prevent directory traversal
+        const safePath = path.normalize(req.params.path).replace(/^(\.\.[\/\\])+/, '');
+        const fullPath = path.join(__dirname, '../../public', safePath);
+        
+        if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
+            res.sendFile(fullPath);
+        } else {
+            res.status(404).json({ error: 'File not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+});
 
 // ============================================
 // COURSE ROUTES
@@ -46,6 +80,32 @@ router.get('/progress/topic/:topicId(*)', (req, res) => progressController.getTo
 
 // GET /api/progress/:courseId/stats - Get course statistics
 router.get('/progress/:courseId/stats', (req, res) => progressController.getCourseStats(req, res));
+
+// Helper to get topic info by path (for bridging File Explorer and LMS features)
+router.get('/topic-by-path', async (req, res) => {
+    try {
+        const filePath = req.query.path;
+        if (!filePath) return res.status(400).json({ error: 'Missing path' });
+        
+        // Normalizar path de la query para coincidir con DB (windows styles)
+        // DB stores 'course\module\topic.md' usually relative to content dir
+        
+        // Try exact match first
+        const dbService = require('../services/dbService');
+        let topic = await dbService.get('SELECT * FROM topics WHERE file_path = ?', [filePath]);
+        
+        // Try with backslashes if not found
+        if (!topic) {
+             const winPath = filePath.replace(/\//g, '\\');
+             topic = await dbService.get('SELECT * FROM topics WHERE file_path = ?', [winPath]);
+        }
+
+        res.json({ data: topic || null });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
 
 // POST /api/progress/mark-complete - Mark topic as completed
 router.post('/progress/mark-complete', (req, res) => progressController.markComplete(req, res));

@@ -151,7 +151,23 @@ function createMenuList(container, menu, expandedPaths, parentPath = "") {
 
     // Div wrapper for the item content (row)
     const row = document.createElement("div");
-    row.className = "menu-item";
+    
+    // Status Logic
+    let displayName = item.name;
+    let metaIcons = '';
+    let itemClass = 'menu-item';
+    
+    if (!item.isDirectory) {
+        if (item.title) displayName = item.title;
+        if (item.completed) {
+            metaIcons += '<ion-icon name="checkmark-circle" style="color:#10b981; margin-left:5px; font-size:0.9em;" title="Completado"></ion-icon>';
+            itemClass += ' completed';
+        }
+        if (item.hasEvaluation) {
+             metaIcons += '<ion-icon name="clipboard-outline" style="color:#f59e0b; margin-left:5px; font-size:0.9em;" title="Evaluación Disponible"></ion-icon>';
+        }
+    }
+    row.className = itemClass;
 
     // Icon
     const isExpanded = expandedPaths.includes(currentPath);
@@ -159,7 +175,7 @@ function createMenuList(container, menu, expandedPaths, parentPath = "") {
       (isExpanded ? "folder-open-outline" : "folder-outline")
       : "document-text-outline";
 
-    row.innerHTML = `<ion-icon name="${iconName}" class="icon"></ion-icon> <span>${item.name}</span>`;
+    row.innerHTML = `<ion-icon name="${iconName}" class="icon"></ion-icon> <span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${displayName}</span> ${metaIcons}`;
 
     row.onclick = (event) => {
       event.stopPropagation();
@@ -243,7 +259,7 @@ function fixImagePaths(html, currentFilePath) {
     const src = img.getAttribute('src');
     if (src && !src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('/api/')) {
       const resolvedPath = resolvePath(currentFilePath, src);
-      img.src = `http://localhost:3000/api/file/${resolvedPath}`;
+      img.src = `/api/file/${resolvedPath}`;
     }
   });
 
@@ -304,8 +320,8 @@ async function loadContent(path) {
     const ext = path.split('.').pop().toLowerCase();
     const isImage = ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'].includes(ext);
 
-    // Use api-files endpoint with full path structure
-    const url = `http://localhost:3000/api/file/${path}`;
+// Use api-files endpoint
+const url = `/api/file/${path}`;
 
     if (isImage) {
       container.innerHTML = `
@@ -336,6 +352,64 @@ async function loadContent(path) {
 
       // Render mermaid diagrams
       await renderMermaidDiagrams();
+
+      // ===============================================
+      // LMS Integration (Audio & Quiz)
+      // ===============================================
+      try {
+        // Path is relative to content, e.g. "modulo_1/tema_1.md"
+        // remove leading slash if present
+        const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+        
+        const infoRes = await fetch(`/api/topic-by-path?path=${encodeURIComponent(cleanPath)}`);
+        const infoData = await infoRes.json();
+        
+        if (infoData.data) {
+           const topic = infoData.data;
+           const toolbar = document.createElement('div');
+           toolbar.className = 'content-toolbar';
+           toolbar.style.marginBottom = '20px';
+           toolbar.style.display = 'flex';
+           toolbar.style.gap = '10px';
+           
+           // Audio Button
+           if (topic.audio_path) {
+               const btnAudio = document.createElement('button');
+               btnAudio.innerHTML = '<ion-icon name="musical-notes-outline"></ion-icon> Escuchar Audio';
+               btnAudio.className = 'action-btn';
+               btnAudio.onclick = () => {
+                   const audioDir = `/api/audio/${encodeURIComponent(topic.id)}`;
+                   const audioPlayer = new Audio(audioDir);
+                   audioPlayer.play();
+                   alert('Reproduciendo audio...'); // Quick hack, better UI later
+               };
+               toolbar.appendChild(btnAudio);
+           }
+
+           // Quiz Button
+           if (topic.evaluation_path) {
+               const btnEval = document.createElement('button');
+               btnEval.innerHTML = '<ion-icon name="create-outline"></ion-icon> Realizar Quiz';
+               btnEval.className = 'action-btn btn-eval';
+               btnEval.style.background = 'var(--accent-primary, #646cff)';
+               btnEval.style.color = 'white';
+               btnEval.onclick = () => startQuiz(topic.id);
+               toolbar.appendChild(btnEval);
+           }
+           
+           if (toolbar.children.length > 0) {
+               container.insertBefore(toolbar, container.firstChild);
+           }
+           
+           // Auto-complete logic
+           if (!topic.completed) {
+               // Mark as complete after 5 seconds of viewing
+               setTimeout(() => markTopicComplete(topic.id), 5000);
+           }
+        }
+      } catch (err) {
+          console.warn('LMS info fetch error', err);
+      }
     }
   } catch (error) {
     console.error("Error al cargar el contenido:", error);
@@ -355,7 +429,7 @@ async function createMarkdownFile() {
   const targetPath = `dev-laoz-markdown-project/public/content/${filename}.md`;
 
   try {
-    const response = await fetch("http://localhost:3000/api/files/content", {
+    const response = await fetch("/api/files/content", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -399,7 +473,7 @@ async function editMarkdownFile() {
 
   if (content !== null) {
     try {
-      const response = await fetch("http://localhost:3000/api/files/content", {
+      const response = await fetch("/api/files/content", {
         method: "POST", // SaveContent handles update too
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -448,3 +522,203 @@ function setupActionButtons() {
 // Inicializar
 setupActionButtons();
 loadMenu();
+
+// ==========================================
+// QUIZ GLOBAL LOGIC
+// ==========================================
+
+let currentQuizTopicId = null;
+let currentQuizQuestions = [];
+
+async function startQuiz(topicId) {
+    currentQuizTopicId = topicId;
+    ensureQuizModalExists();
+    
+    const modal = document.getElementById('quizModal');
+    const quizBody = document.getElementById('quizBody');
+    quizBody.innerHTML = '<div style="text-align:center; padding:20px;">Cargando evaluación...</div>';
+    modal.style.display = 'block';
+    
+    try {
+        const response = await fetch(`/api/content/${encodeURIComponent(topicId)}/evaluation`);
+        const data = await response.json();
+        
+        if (data.error) throw new Error(data.error);
+        if (!data.markdown) throw new Error('Contenido vacío');
+        
+        currentQuizQuestions = parseQuizMarkdown(data.markdown);
+        
+        if (currentQuizQuestions.length === 0) {
+            quizBody.innerHTML = '<p>No se encontraron preguntas válidas.</p>';
+            return;
+        }
+        
+        renderQuiz(currentQuizQuestions);
+        
+    } catch (error) {
+        console.error('Error starting quiz:', error);
+        quizBody.innerHTML = `<p style="color:red">Error: ${error.message}</p>`;
+    }
+}
+
+function ensureQuizModalExists() {
+    if (document.getElementById('quizModal')) return;
+    
+    const modalHtml = `
+    <div id="quizModal" class="modal" style="display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.8); backdrop-filter:blur(5px);">
+        <div class="modal-content" style="background-color:#1e1e1e; margin:5% auto; padding:0; border:1px solid #333; width:80%; max-width:800px; border-radius:10px; color:#fff;">
+            <div class="modal-header" style="padding:15px 20px; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center;">
+                <h2 style="margin:0; font-size:1.2rem;">Evaluación</h2>
+                <span class="close" onclick="closeQuiz()" style="cursor:pointer; font-size:1.5rem;">&times;</span>
+            </div>
+            <div id="quizBody" class="modal-body" style="padding:20px;"></div>
+            <div class="modal-footer" style="padding:15px 20px; border-top:1px solid #333; text-align:right;">
+                <button class="btn-submit-quiz action-btn" onclick="submitQuiz()" style="background:#10b981; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Enviar Respuestas</button>
+                <button onclick="closeQuiz()" style="background:transparent; border:1px solid #666; color:#fff; padding:8px 16px; border-radius:4px; cursor:pointer; margin-left:10px;">Cerrar</button>
+            </div>
+        </div>
+    </div>`;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+function closeQuiz() {
+    document.getElementById('quizModal').style.display = 'none';
+}
+
+function parseQuizMarkdown(markdown) {
+    const questions = [];
+    const lines = markdown.split('\n');
+    let currentQuestion = null;
+    
+    lines.forEach(line => {
+        const trimmed = line.trim();
+        if (trimmed.match(/^#{1,4}\s+/) || trimmed.match(/^\d+\.\s+/)) {
+            if (currentQuestion) questions.push(currentQuestion);
+            currentQuestion = {
+                text: trimmed.replace(/^[#\d\.]+\s+/, ''),
+                options: [],
+                type: 'single'
+            };
+        } else if (currentQuestion && trimmed.match(/^-\s*\[([ xX])\]/)) {
+            const isCorrect = trimmed.match(/^-\s*\[([xX])\]/);
+            const text = trimmed.replace(/^-\s*\[([ xX])\]\s*/, '');
+            currentQuestion.options.push({ text: text, isCorrect: !!isCorrect });
+        }
+    });
+    
+    if (currentQuestion) questions.push(currentQuestion);
+    return questions.filter(q => q.options.length > 0);
+}
+
+function renderQuiz(questions) {
+    const quizBody = document.getElementById('quizBody');
+    quizBody.innerHTML = '';
+    
+    questions.forEach((q, index) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'quiz-question';
+        qDiv.style.marginBottom = '20px';
+        qDiv.style.background = 'rgba(255,255,255,0.05)';
+        qDiv.style.padding = '15px';
+        qDiv.style.borderRadius = '8px';
+        
+        qDiv.innerHTML = `
+            <h3 style="margin-top:0; font-size:1rem; margin-bottom:10px;">${index + 1}. ${q.text}</h3>
+            <div class="quiz-options" style="display:flex; flex-direction:column; gap:8px;">
+                ${q.options.map((opt, optIndex) => `
+                    <div class="quiz-option" style="padding:8px; background:rgba(0,0,0,0.2); border-radius:4px;">
+                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+                            <input type="${hasMultipleCorrect(q) ? 'checkbox' : 'radio'}" 
+                                   name="q${index}" 
+                                   value="${optIndex}"
+                                   ${hasMultipleCorrect(q) ? '' : 'required'}>
+                            <span>${opt.text}</span>
+                        </label>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        quizBody.appendChild(qDiv);
+    });
+}
+
+function hasMultipleCorrect(question) {
+    return question.options.filter(o => o.isCorrect).length > 1;
+}
+
+async function submitQuiz() {
+    let score = 0;
+    const results = [];
+    
+    currentQuizQuestions.forEach((q, index) => {
+        const selectedInputs = document.querySelectorAll(`input[name="q${index}"]:checked`);
+        const selectedIndices = Array.from(selectedInputs).map(i => parseInt(i.value));
+        const correctIndices = q.options.map((o, i) => o.isCorrect ? i : -1).filter(i => i !== -1);
+        
+        const isCorrect = selectedIndices.length === correctIndices.length && selectedIndices.every(val => correctIndices.includes(val));
+        if (isCorrect) score++;
+        
+        results.push({ question: q.text, isCorrect, selected: selectedIndices, correct: correctIndices });
+        
+        const qDiv = document.querySelectorAll('.quiz-question')[index];
+        if (isCorrect) qDiv.style.borderLeft = '4px solid #10b981';
+        else qDiv.style.borderLeft = '4px solid #ef4444';
+    });
+    
+    const btnSubmit = document.querySelector('.btn-submit-quiz');
+    btnSubmit.innerText = 'Guardando...';
+    btnSubmit.disabled = true;
+    
+    try {
+        await fetch(`/api/progress/submit-evaluation`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                topicId: currentQuizTopicId,
+                score: score,
+                maxScore: currentQuizQuestions.length,
+                answers: results,
+                timeSpent: 0
+            })
+        });
+    } catch(e) { console.error(e); }
+    
+    const percentage = Math.round((score / currentQuizQuestions.length) * 100);
+    const quizBody = document.getElementById('quizBody');
+    quizBody.insertAdjacentHTML('afterbegin', `
+        <div style="background:${percentage >= 70 ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)'}; padding:15px; border-radius:8px; margin-bottom:20px; text-align:center;">
+            <h2 style="margin:0; color:${percentage >= 70 ? '#10b981' : '#ef4444'}">${percentage}%</h2>
+            <p style="margin:5px 0 0 0;">Has acertado ${score} de ${currentQuizQuestions.length}</p>
+        </div>
+    `);
+    
+    btnSubmit.style.display = 'none';
+    quizBody.scrollTop = 0;
+}
+
+async function markTopicComplete(topicId) {
+    if(!topicId) return;
+    try {
+        await fetch('/api/progress/mark-complete', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ 
+                courseId: 'default', 
+                moduleId: 'default', 
+                topicId: topicId 
+            })
+        });
+        
+        // Update UI
+        const activeRow = document.querySelector('.menu-item.active');
+        if(activeRow && !activeRow.querySelector('ion-icon[name="checkmark-circle"]')) {
+             activeRow.classList.add('completed');
+             // Append icon just before any extra icons or at end
+             const span = activeRow.querySelector('span'); // text span
+             if(span) {
+                span.insertAdjacentHTML('afterend', '<ion-icon name="checkmark-circle" style="color:#10b981; margin-left:5px; font-size:0.9em;" title="Completado"></ion-icon>');
+             }
+        }
+    } catch(e) { console.error('Error marking complete', e); }
+}
