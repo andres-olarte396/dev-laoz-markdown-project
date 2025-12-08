@@ -1,98 +1,197 @@
-# 📁 Markdown Menu Project
+# L4OZ Learning Platform
 
-Este proyecto genera un menú dinámico basado en archivos Markdown (`.md`) contenidos en un directorio. Los archivos se representan en un menú vertical, y los subdirectorios aparecen como submenús. Al hacer clic en un archivo, se muestra su contenido en formato HTML.
+> **Plataforma LMS moderna para cursos técnicos con soporte de audio, evaluaciones y seguimiento de progreso**
 
-## 🚀 Características
+[![Status](https://img.shields.io/badge/status-in%20development-yellow)](https://github.com)
+[![Progress](https://img.shields.io/badge/progress-60%25-blue)](./docs/FINAL_SUMMARY.md)
+[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE.txt)
 
-- 📂 Generación automática de un menú basado en la estructura del directorio.
-- 📄 Visualización del contenido de archivos Markdown en HTML.
-- 📑 Submenús para directorios con el mismo nombre que un archivo Markdown.
-- 🌐 Interfaz web sencilla con menú vertical.
+## 🎯 Descripción
 
----
+L4OZ Learning Platform es un **Learning Management System (LMS)** diseñado específicamente para cursos técnicos del ecosistema **teach-laoz**. Permite a los usuarios:
 
-## 🛠️ Instalación y Configuración
+- � **VER** contenido en Markdown con renderizado avanzado
+- 🎧 **ESCUCHAR** audio sincronizado con el contenido
+- 🧭 **NAVEGAR** entre módulos y temas de forma intuitiva
+- ✅ **EVALUAR** conocimientos con cuestionarios interactivos
+- 📊 **RASTREAR** progreso y obtener certificados
 
-### Pre-requisitos
+## � Inicio Rápido
 
-- [Node.js](https://nodejs.org) instalado en tu sistema.
-- Un entorno donde puedas ejecutar aplicaciones Node.js.
+### Prerrequisitos
 
-### Pasos de Instalación
+- Node.js 18+
+- npm 9+
 
-1. Clona este repositorio:
+### Instalación
 
-   ```bash
-   git clone <URL_DE_TU_REPOSITORIO>
-   cd markdown-menu-project
-   ```
+```bash
+# Clonar el repositorio
+git clone https://github.com/andres-olarte396/dev-laoz-markdown-project.git
+cd dev-laoz-markdown-project
 
-2. Instala las dependencias:
+# Instalar dependencias
+npm install
 
-   ```bash
-   npm install
-   ```
+# Inicializar base de datos
+npm run db:init
 
-3. Inicia el servidor:
-
-   ```bash
-   npm start
-   ```
-
-4. Abre tu navegador en `http://localhost:3000`.
-
----
-
-## 📂 Estructura del Proyecto
-
-```textplain
-markdown-menu-project/
-│
-├── src/
-│   ├── controllers/       # Lógica del controlador
-│   ├── services/          # Servicios, como la generación de menús
-│   ├── utils/             # Utilidades auxiliares (lectura de archivos)
-│   └── views/             # Archivos de frontend (HTML, CSS, JS)
-│
-├── public/
-│   └── content/           # Archivos Markdown y directorios que definen el menú
-│       ├── example.md     # Archivo Markdown de ejemplo
-│       └── subfolder/     # Subdirectorio con más archivos Markdown
-│
-├── server.js              # Servidor Express que maneja API y contenido estático
-├── package.json           # Configuración del proyecto y dependencias
-└── README.md              # Documentación del proyecto
+# Iniciar servidor
+npm start
 ```
 
+El servidor estará disponible en `http://localhost:7000`
+
+### Endpoints Principales
+
+- **Health Check:** `http://localhost:7000/api/health`
+- **Cursos:** `http://localhost:7000/api/courses`
+- **Estructura:** `http://localhost:7000/api/courses/:id/structure`
+- **Contenido:** `http://localhost:7000/api/content/:topicId`
+
+## � Estructura del Proyecto
+
+```
+dev-laoz-markdown-project/
+├── db/                          # Base de datos SQLite
+│   └── schema.sql              # Esquema de BD
+├── docs/                        # 📚 Documentación completa
+│   ├── README.md               # Índice de documentación
+│   ├── FINAL_SUMMARY.md        # Resumen del proyecto
+│   ├── REQUIREMENTS_*.md       # Requerimientos
+│   └── IMPLEMENTATION_*.md     # Plan de implementación
+├── logs/                        # Logs de la aplicación
+├── public/
+│   └── content/                # Cursos en formato Markdown
+│       └── teach-laoz-*/       # Cursos teach-laoz
+├── scripts/
+│   ├── initDatabase.js         # Inicialización de BD
+│   └── utils/                  # Scripts de utilidad
+├── src/
+│   ├── controllers/            # Controladores de API
+│   ├── middleware/             # Middleware Express
+│   ├── routes/                 # Rutas de API
+│   ├── services/               # Lógica de negocio
+│   ├── utils/                  # Utilidades
+│   └── views/                  # Frontend (HTML/CSS/JS)
+├── package.json
+├── server.js                   # Servidor principal
+└── README.md                   # Este archivo
+```
+
+## 📚 Documentación
+
+La documentación completa está en el directorio [`docs/`](./docs/):
+
+- **[Resumen Final](./docs/FINAL_SUMMARY.md)** - Estado actual y próximos pasos
+- **[Requerimientos](./docs/REQUIREMENTS_TEACH_LAOZ_INTEGRATION.md)** - Especificaciones completas
+- **[Plan de Implementación](./docs/IMPLEMENTATION_PLAN_TEACH_LAOZ.md)** - Roadmap detallado
+- **[Estado de Implementación](./docs/IMPLEMENTATION_STATUS.md)** - Progreso actual
+
+## 🎨 Características
+
+### Implementadas ✅
+
+- ✅ Arquitectura backend moderna (MVC)
+- ✅ Base de datos SQLite con 10 tablas
+- ✅ API REST con 15 endpoints
+- ✅ Sistema de logging profesional
+- ✅ Detección automática de cursos
+- ✅ Health check y monitoreo
+
+### En Desarrollo ⏳
+
+- ⏳ Sistema de cursos (85%)
+- ⏳ Persistencia de módulos y temas
+- ⏳ Frontend Vue.js
+- ⏳ Reproductor de audio
+
+### Planificadas 📋
+
+- 📋 Sistema de evaluaciones
+- 📋 Seguimiento de progreso
+- 📋 Dashboard de usuario
+- 📋 Certificados de finalización
+
+## 🔧 Scripts Disponibles
+
+```bash
+# Desarrollo
+npm start              # Iniciar servidor
+npm run dev            # Modo desarrollo (con nodemon)
+
+# Base de datos
+npm run db:init        # Inicializar/reinicializar BD
+npm run db:migrate     # Ejecutar migraciones
+
+# Utilidades
+node scripts/utils/check-db-json.js    # Verificar estado de BD
+```
+
+## 🛠️ Stack Tecnológico
+
+### Backend
+
+- **Runtime:** Node.js 18+
+- **Framework:** Express.js
+- **Base de Datos:** SQLite (sqlite3)
+- **Logging:** Winston
+- **Markdown:** Marked + Highlight.js
+
+### Frontend (Planificado)
+
+- **Framework:** Vue.js 3
+- **Router:** Vue Router 4
+- **State:** Pinia
+- **Build:** Vite
+
+## 📊 Estado del Proyecto
+
+| Componente | Progreso |
+|------------|----------|
+| Backend Architecture | ![100%](https://progress-bar.dev/100) |
+| Database Schema | ![100%](https://progress-bar.dev/100) |
+| API REST | ![100%](https://progress-bar.dev/100) |
+| Course System | ![85%](https://progress-bar.dev/85) |
+| Frontend | ![0%](https://progress-bar.dev/0) |
+| Audio System | ![0%](https://progress-bar.dev/0) |
+
+**Progreso Global:** ![60%](https://progress-bar.dev/60)
+
+## 🐛 Issues Conocidos
+
+1. **Módulos no se persisten en BD** (Prioridad: Alta)
+   - Estado: Investigando
+   - Solución propuesta en [FINAL_SUMMARY.md](./docs/FINAL_SUMMARY.md)
+
+## 🤝 Contribuir
+
+Este es un proyecto en desarrollo activo. Para contribuir:
+
+1. Lee la [documentación completa](./docs/)
+2. Revisa el [plan de implementación](./docs/IMPLEMENTATION_PLAN_TEACH_LAOZ.md)
+3. Verifica los [issues conocidos](./docs/FINAL_SUMMARY.md#-problema-pendiente)
+
+## 📄 Licencia
+
+MIT License - Ver [LICENSE.txt](./LICENSE.txt) para más detalles
+
+## 👤 Autor
+
+**Andrés Olarte**
+
+- GitHub: [@andres-olarte396](https://github.com/andres-olarte396)
+
 ---
 
-## 👨‍💻 Uso del Proyecto
+## � Enlaces Relacionados
 
-1. **Añadir archivos Markdown:**
-   Coloca tus archivos `.md` en la carpeta `public/content`. Por ejemplo:
-
-   ```textplain
-   public/content/
-   ├── archivo1.md
-   ├── archivo2.md
-   └── carpeta/
-       └── archivo3.md
-   ```
-
-2. **Navegar en la aplicación:**
-   - Los archivos aparecerán automáticamente en el menú.
-   - Haz clic en un archivo para ver su contenido renderizado en la página.
+- [Ecosistema teach-laoz](../teach-laoz/)
+- [Documentación del Proyecto](./docs/)
+- [Plan de Implementación](./docs/IMPLEMENTATION_PLAN_TEACH_LAOZ.md)
 
 ---
 
-## 🧩 Personalización
-
-Si deseas modificar el comportamiento del menú o la interfaz, edita los archivos correspondientes en la carpeta `src/views/`.
-
----
-
-## 📜 Licencia
-
-Este proyecto está bajo la licencia MIT. Puedes usarlo, modificarlo y distribuirlo libremente.
-
----
+**Última Actualización:** 2025-12-07  
+**Versión:** 2.0.0  
+**Estado:** En Desarrollo Activo 🚀
