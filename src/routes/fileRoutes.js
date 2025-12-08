@@ -1,10 +1,13 @@
 const express = require('express');
-const { getFile, createFile, updateFile } = require('../controllers/fileController');
+const { getFile, createFile, updateFile, searchFiles } = require('../controllers/fileController');
 
 const router = express.Router();
 
+// Ruta de búsqueda (Debe ir ANTES del wildcard)
+router.get('/search', searchFiles);
+
 // Ruta para obtener un archivo
-router.get('/:fileName', getFile);
+router.get('/*', getFile);
 
 // Ruta para crear un archivo
 router.post('/', createFile);
