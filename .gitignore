@@ -1,4 +1,56 @@
-node_modules
+# Dependencies
+node_modules/
+package-lock.json
+
+# Database
+db/*.db
+db/*.db-shm
+db/*.db-wal
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment variables
 .env
-public/content/*
-!public/content/.keep
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Debugging files
+db-status.json
+db-check.txt
+db-detailed.txt
+test-error.txt
+init-output.txt
+init-log*.txt
+error.log
+test_response.json
+debug-*.txt
+
+# Public content
+public/content/
