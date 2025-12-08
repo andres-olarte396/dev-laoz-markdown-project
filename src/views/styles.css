@@ -1,62 +1,598 @@
-main {
-    top: 5rem !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    padding-left: 10px;
-    display: flex;
+/* Importar Variables */
+@import url("theme.css");
+
+/* --- Encabezados --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  display: block;
+}
+
+h1 {
+  font-size: var(--font-size-heading);
+}
+
+h2 {
+  font-size: calc(var(--font-size-heading) - 4px);
+}
+
+h3 {
+  font-size: calc(var(--font-size-heading) - 8px);
+}
+
+h4 {
+  font-size: calc(var(--font-size-heading) - 10px);
+}
+
+h5 {
+  font-size: calc(var(--font-size-heading) - 12px);
+}
+
+h6 {
+  font-size: calc(var(--font-size-heading) - 14px);
+}
+@import url("theme.css");
+
+/* --- Listas --- */
+ul,
+ol {
+  padding-left: var(--spacing-lg);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+dl {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: var(--spacing-md);
+}
+@import url("theme.css");
+
+/* Header */
+header {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 1rem;
+    margin: 0;
     width: 100%;
+    height: 8vh;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  header img {
+    width: 100px;
+    height: 100px;
+    margin-left: 100px;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-text-primary);
+    margin-bottom: 0;
+    margin-left: var(--spacing-md);
+  }
+  
+  header>h1 {
+    font-size: var(--font-size-heading);
+    font-weight: bold;
+    color: var(--color-text-) !important;
+    margin-bottom: 0%;
+    margin-left: var(--spacing-md);
+  }
+  
+  header nav ul li {
+    display: inline;
+    margin: 0 var(--spacing-md);
+  }
+  
+  /* Main */
+  main {
+    margin-top: 10vh;
+    /* Para no superponer con el header */
+    padding: 2rem;
+    min-height: 85vh;
+    position: relative;
+    width: 100%;
+    background-color: var(--color-background);
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--color-surface);
+    color: var(--color-text-secondary);
+    padding: 1rem;
+    margin: 0;
+    width: 100%;
+    height: 5vh;
+    position: relative;
+    bottom: 0;
+    text-align: center;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    header {
+      padding: 0.5rem;
+      height: 12vh;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    header img {
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+    }
+  
+    header h1 {
+      margin-left: var(--spacing-sm);
+    }
+  
+    header nav ul li {
+      margin: 0 var(--spacing-sm);
+    }
+  
+    main {
+      padding: 1rem;
+      margin-top: 12vh;
+      /* Ajuste por header más alto */
+    }
+  
+    footer {
+      padding: 0.5rem;
+      height: auto;
+      /* Deja que el contenido determine la altura */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      height: 14vh;
+    }
+  
+    header img {
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+    }
+  
+    header h1 {
+      margin-left: var(--spacing-sm);
+    }
+  
+    header nav ul li {
+      margin: 0 var(--spacing-sm);
+    }
+  
+    main {
+      padding: 0.5rem;
+      margin-top: 14vh;
+    }
+  
+    footer {
+      font-size: 0.8rem;
+      padding: 0.5rem;
+    }
+  }
+@import url("theme.css");
+
+/* --- Texto --- */
+article {
+  margin-bottom: var(--spacing-md);
 }
 
-main section {
-    margin: 10px !important;
-    margin-right: 0 !important;
+code {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  padding: 0.2rem;
+  border-radius: var(--border-radius);
 }
 
-footer {
-    position: absolute !important;
+br,
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: var(--spacing-md) 0;
+}
+
+label {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var (--color-text-secondary);
+}
+
+pre {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  margin: var(--spacing-md);
+}
+
+span {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+}
+
+small {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+/* menu */
+nav {
+  text-align: center;
+}
+
+/* --- Enlaces --- */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s var(--animation-ease);
+}
+
+a:active {
+  color: var(--color-accent);
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+a:visited {
+  color: var(--color-tertiary);
+}
+
+/* Estilos para texto en negrita */
+b {
+  font-weight: bold;
+}
+
+/* Estilos para texto importante */
+strong {
+  font-weight: bolder;
+}
+
+/* Estilos para texto en cursiva */
+i {
+  font-style: italic;
+}
+
+/* Estilos para texto enfatizado */
+em {
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* Estilos para texto marcado */
+mark {
+  background-color: var(--color-highlight, yellow);
+  color: var(--color-text-primary);
+}
+
+/* Estilos para texto más pequeño */
+small {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+/* Estilos para texto eliminado */
+del {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+/* Estilos para texto insertado */
+ins {
+  text-decoration: underline;
+  color: var(--color-text-primary);
+}
+
+/* Estilos para subíndice */
+sub {
+  font-size: smaller;
+  vertical-align: sub;
+}
+
+/* Estilos para superíndice */
+sup {
+  font-size: smaller;
+  vertical-align: super;
+}
+/* Document Layout Component for Markdown Viewer */
+/* This component styles the documentation viewer with GitHub-style dark theme */
+
+/* ===========================================
+   GITHUB DARK THEME - DEFAULT
+   =========================================== */
+:root {
+  /* Override light theme with dark as default */
+  --color-primary: #58a6ff;
+  --color-secondary: #6e40c9;
+  --color-accent: #f59e0b;
+  
+  --color-background: #0d1117;
+  --color-surface: #161b22;
+  --color-overlay: rgba(177, 186, 196, 0.12);
+  
+  --color-text-primary: #c9d1d9;
+  --color-text-secondary: #8b949e;
+  --color-text-muted: #6e7681;
+  
+  --color-border: #30363d;
+  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+  
+  /* Spacing variables if not defined */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  
+  /* Additional variables */
+  --border-radius: 6px;
+  --bg-card: #21262d;
+}
+
+/* ===========================================
+   LAYOUT STRUCTURE
+   =========================================== */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+aside {
+  width: 280px;
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  position: relative;
+  scroll-behavior: smooth;
+  background-color: var(--color-background);
+}
+
+/* ===========================================
+   SIDEBAR COMPONENTS
+   =========================================== */
+.sidebar-header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #actions-container {
-    width: 250px;
-    border-right: 1px solid #ccc;
-    padding: 10px;
-    overflow-y: auto;
-    height: 85vh;
+  padding: var(--spacing-sm);
+  display: flex;
+  gap: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border);
 }
 
 #menu-container {
-    width: 250px;
-    border-right: 1px solid #ccc;
-    padding: 10px;
-    overflow-y: auto;
-    height: 85vh;
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-sm) 0;
 }
 
-#content-container {
-    flex: 1;
-    padding: 20px;
-    max-height: 85vh;
-    overflow-y: auto;
-    
+/* ===========================================
+   BUTTONS
+   =========================================== */
+.action-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  border-radius: var(--border-radius);
+  padding: 6px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.action-btn:hover {
+  background: var(--color-border);
+  border-color: var(--color-text-muted);
+}
+
+.icon-btn-small {
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1.1rem;
+  padding: 0;
+}
+
+.icon-btn-small:hover {
+  background: var(--color-border);
+  color: var(--color-text-primary);
+  border-color: var(--color-text-muted);
+}
+
+/* ===========================================
+   MENU TREE
+   =========================================== */
 #menu-container ul {
-    list-style-type: none; /* Oculta los puntos de la lista */
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
-#menu-container .folder {
-    cursor: pointer; /* Cambia el cursor a mano al pasar por folders */
-    font-weight: bold;
+#menu-container ul li {
+  position: relative;
 }
 
-#menu-container .file {
-    font-weight: normal;
+#menu-container ul ul {
+  padding-left: var(--spacing-md);
+  border-left: 1px solid var(--color-border);
+  margin-left: 12px;
 }
 
-#menu-container .folder > ul {
-    display: none; /* Oculta las sublistas por defecto */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 6px var(--spacing-md);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.1s ease;
 }
 
-#menu-container > li {
-    border-bottom: #ccc 1px solid;
+.menu-item:hover {
+  background-color: var(--color-overlay);
+  color: var(--color-text-primary);
+}
+
+.menu-item.active {
+  background-color: rgba(88, 166, 255, 0.1);
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+}
+
+.icon {
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+/* ===========================================
+   CONTENT AREA
+   =========================================== */
+#content-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  line-height: 1.6;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--color-text-muted);
+}
+
+/* ===========================================
+   MARKDOWN TYPOGRAPHY
+   =========================================== */
+#content-container h1,
+#content-container h2,
+#content-container h3 {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.3em;
+  margin-top: 24px;
+}
+
+#content-container a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+#content-container a:hover {
+  text-decoration: underline;
+}
+
+#content-container code {
+  background-color: rgba(110, 118, 129, 0.4);
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+#content-container pre {
+  background-color: var(--color-surface);
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+#content-container pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+#content-container blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: var(--color-text-muted);
+  border-left: 0.25em solid var(--color-border);
+}
+
+/* ===========================================
+   SCROLLBARS
+   =========================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
 }
