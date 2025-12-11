@@ -1,0 +1,500 @@
+teach-laoz-lms  |  - tema_11.3_subtema_11.3.2_ejercicios.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 12
+teach-laoz-lms  | DEBUG: Processing file tema_11.1_subtema_11.1.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.1_subtema_11.1.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.1_subtema_11.1.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.1_subtema_11.1.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_11.1_subtema_11.1.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.1_subtema_11.1.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.1_subtema_11.1.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.1_subtema_11.1.1_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_11.1_subtema_11.1.2_contenido.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.1_subtema_11.1.2_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.1_subtema_11.1.2_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.1_subtema_11.1.2_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_11.1_subtema_11.1.2_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.1_subtema_11.1.2_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.1_subtema_11.1.2_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.1_subtema_11.1.2_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_11.2_subtema_11.2.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.2_subtema_11.2.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.2_subtema_11.2.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.2_subtema_11.2.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_11.2_subtema_11.2.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.2_subtema_11.2.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.2_subtema_11.2.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.2_subtema_11.2.1_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_11.2_subtema_11.2.2_contenido.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.2_subtema_11.2.2_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.2_subtema_11.2.2_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.2_subtema_11.2.2_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_11.2_subtema_11.2.2_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.2_subtema_11.2.2_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.2_subtema_11.2.2_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.2_subtema_11.2.2_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_11.3_subtema_11.3.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.3_subtema_11.3.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.3_subtema_11.3.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.3_subtema_11.3.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_11.3_subtema_11.3.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.3_subtema_11.3.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.3_subtema_11.3.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.3_subtema_11.3.1_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_11.3_subtema_11.3.2_contenido.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.3_subtema_11.3.2_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.3_subtema_11.3.2_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.3_subtema_11.3.2_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_11.3_subtema_11.3.2_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_11
+teach-laoz-lms  | DEBUG: NO Audio found for tema_11.3_subtema_11.3.2_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_11/tema_11.3_subtema_11.3.2_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_11/tema_11.3_subtema_11.3.2_ejercicios
+teach-laoz-lms  | 2025-12-11 00:36:17 [[32minfo[39m]: [32mSaving module: teach-laoz-curso_principios_solid/modulo_12 - Módulo _12[39m
+teach-laoz-lms  | 2025-12-11 00:36:17 [[32minfo[39m]: [32m✓ Module saved: teach-laoz-curso_principios_solid/modulo_12[39m
+teach-laoz-lms  | DEBUG: Parsing topics for teach-laoz-curso_principios_solid/modulo_12 in /app/public/content/teach-laoz-curso_principios_solid/modulos/modulo_12
+teach-laoz-lms  | DEBUG: found 16 raw entries
+teach-laoz-lms  |  - tema_12.1_subtema_12.1.1_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_12.1_subtema_12.1.1_ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_12.1_subtema_12.1.1_evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_12.1_subtema_12.1.1_guion.md (isFile: true)
+teach-laoz-lms  |  - tema_12.1_subtema_12.1.2_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_12.1_subtema_12.1.2_ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_12.1_subtema_12.1.2_evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_12.1_subtema_12.1.2_guion.md (isFile: true)
+teach-laoz-lms  |  - tema_12.2_subtema_12.2.1_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_12.2_subtema_12.2.1_ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_12.2_subtema_12.2.1_evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_12.2_subtema_12.2.1_guion.md (isFile: true)
+teach-laoz-lms  |  - tema_12.3_subtema_12.3.1_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_12.3_subtema_12.3.1_ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_12.3_subtema_12.3.1_evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_12.3_subtema_12.3.1_guion.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 8
+teach-laoz-lms  | DEBUG: Processing file tema_12.1_subtema_12.1.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_12
+teach-laoz-lms  | DEBUG: NO Audio found for tema_12.1_subtema_12.1.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_12/tema_12.1_subtema_12.1.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_12/tema_12.1_subtema_12.1.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_12.1_subtema_12.1.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_12
+teach-laoz-lms  | DEBUG: NO Audio found for tema_12.1_subtema_12.1.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_12/tema_12.1_subtema_12.1.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_12/tema_12.1_subtema_12.1.1_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_12.1_subtema_12.1.2_contenido.md in module teach-laoz-curso_principios_solid/modulo_12
+teach-laoz-lms  | DEBUG: NO Audio found for tema_12.1_subtema_12.1.2_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_12/tema_12.1_subtema_12.1.2_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_12/tema_12.1_subtema_12.1.2_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_12.1_subtema_12.1.2_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_12
+teach-laoz-lms  | DEBUG: NO Audio found for tema_12.1_subtema_12.1.2_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_12/tema_12.1_subtema_12.1.2_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_12/tema_12.1_subtema_12.1.2_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_12.2_subtema_12.2.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_12
+teach-laoz-lms  | DEBUG: NO Audio found for tema_12.2_subtema_12.2.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_12/tema_12.2_subtema_12.2.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_12/tema_12.2_subtema_12.2.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_12.2_subtema_12.2.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_12
+teach-laoz-lms  | DEBUG: NO Audio found for tema_12.2_subtema_12.2.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_12/tema_12.2_subtema_12.2.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_12/tema_12.2_subtema_12.2.1_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_12.3_subtema_12.3.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_12
+teach-laoz-lms  | DEBUG: NO Audio found for tema_12.3_subtema_12.3.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_12/tema_12.3_subtema_12.3.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_12/tema_12.3_subtema_12.3.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_12.3_subtema_12.3.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_12
+teach-laoz-lms  | DEBUG: NO Audio found for tema_12.3_subtema_12.3.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_12/tema_12.3_subtema_12.3.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_12/tema_12.3_subtema_12.3.1_ejercicios
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32mSaving module: teach-laoz-curso_principios_solid/modulo_13 - Módulo _13[39m
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32m✓ Module saved: teach-laoz-curso_principios_solid/modulo_13[39m
+teach-laoz-lms  | DEBUG: Parsing topics for teach-laoz-curso_principios_solid/modulo_13 in /app/public/content/teach-laoz-curso_principios_solid/modulos/modulo_13
+teach-laoz-lms  | DEBUG: found 16 raw entries
+teach-laoz-lms  |  - tema_13.1_subtema_13.1.1_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_13.1_subtema_13.1.1_ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_13.1_subtema_13.1.1_evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_13.1_subtema_13.1.1_guion.md (isFile: true)
+teach-laoz-lms  |  - tema_13.2_subtema_13.2.1_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_13.2_subtema_13.2.1_ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_13.2_subtema_13.2.1_evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_13.2_subtema_13.2.1_guion.md (isFile: true)
+teach-laoz-lms  |  - tema_13.3_subtema_13.3.1_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_13.3_subtema_13.3.1_ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_13.3_subtema_13.3.1_evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_13.3_subtema_13.3.1_guion.md (isFile: true)
+teach-laoz-lms  |  - tema_13.4_subtema_13.4.1_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_13.4_subtema_13.4.1_ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_13.4_subtema_13.4.1_evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_13.4_subtema_13.4.1_guion.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 8
+teach-laoz-lms  | DEBUG: Processing file tema_13.1_subtema_13.1.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_13
+teach-laoz-lms  | DEBUG: NO Audio found for tema_13.1_subtema_13.1.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_13/tema_13.1_subtema_13.1.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_13/tema_13.1_subtema_13.1.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_13.1_subtema_13.1.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_13
+teach-laoz-lms  | DEBUG: NO Audio found for tema_13.1_subtema_13.1.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_13/tema_13.1_subtema_13.1.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_13/tema_13.1_subtema_13.1.1_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_13.2_subtema_13.2.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_13
+teach-laoz-lms  | DEBUG: NO Audio found for tema_13.2_subtema_13.2.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_13/tema_13.2_subtema_13.2.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_13/tema_13.2_subtema_13.2.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_13.2_subtema_13.2.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_13
+teach-laoz-lms  | DEBUG: NO Audio found for tema_13.2_subtema_13.2.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_13/tema_13.2_subtema_13.2.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_13/tema_13.2_subtema_13.2.1_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_13.3_subtema_13.3.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_13
+teach-laoz-lms  | DEBUG: NO Audio found for tema_13.3_subtema_13.3.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_13/tema_13.3_subtema_13.3.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_13/tema_13.3_subtema_13.3.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_13.3_subtema_13.3.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_13
+teach-laoz-lms  | DEBUG: NO Audio found for tema_13.3_subtema_13.3.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_13/tema_13.3_subtema_13.3.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_13/tema_13.3_subtema_13.3.1_ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_13.4_subtema_13.4.1_contenido.md in module teach-laoz-curso_principios_solid/modulo_13
+teach-laoz-lms  | DEBUG: NO Audio found for tema_13.4_subtema_13.4.1_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_13/tema_13.4_subtema_13.4.1_contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_13/tema_13.4_subtema_13.4.1_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_13.4_subtema_13.4.1_ejercicios.md in module teach-laoz-curso_principios_solid/modulo_13
+teach-laoz-lms  | DEBUG: NO Audio found for tema_13.4_subtema_13.4.1_ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_principios_solid/modulo_13/tema_13.4_subtema_13.4.1_ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_principios_solid/modulo_13/tema_13.4_subtema_13.4.1_ejercicios
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32m✓ Completed parsing 14 modules for teach-laoz-curso_principios_solid[39m
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32mParsed course: Curso: Proyecto de Vida[39m
+teach-laoz-lms  | DEBUG: Parsing modules for teach-laoz-curso_proyecto_vida
+teach-laoz-lms  | DEBUG: Course Path: /app/public/content/teach-laoz-curso_proyecto_vida
+teach-laoz-lms  | DEBUG: Checking modules dir: /app/public/content/teach-laoz-curso_proyecto_vida/modulos
+teach-laoz-lms  | DEBUG: Modules dir EXISTS
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32mFound 5 modules for teach-laoz-curso_proyecto_vida[39m
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32mSaving module: teach-laoz-curso_proyecto_vida/modulo_0 - Módulo _0[39m
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32m✓ Module saved: teach-laoz-curso_proyecto_vida/modulo_0[39m
+teach-laoz-lms  | DEBUG: Parsing topics for teach-laoz-curso_proyecto_vida/modulo_0 in /app/public/content/teach-laoz-curso_proyecto_vida/modulos/modulo_0
+teach-laoz-lms  | DEBUG: found 1 raw entries
+teach-laoz-lms  |  - tema_0.1_preconceptos.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 1
+teach-laoz-lms  | DEBUG: Processing file tema_0.1_preconceptos.md in module teach-laoz-curso_proyecto_vida/modulo_0
+teach-laoz-lms  | DEBUG: NO Audio found for tema_0.1_preconceptos.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_0/tema_0.1_preconceptos
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_0/tema_0.1_preconceptos
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32mSaving module: teach-laoz-curso_proyecto_vida/modulo_1 - Módulo _1[39m
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32m✓ Module saved: teach-laoz-curso_proyecto_vida/modulo_1[39m
+teach-laoz-lms  | DEBUG: Parsing topics for teach-laoz-curso_proyecto_vida/modulo_1 in /app/public/content/teach-laoz-curso_proyecto_vida/modulos/modulo_1
+teach-laoz-lms  | DEBUG: found 12 raw entries
+teach-laoz-lms  |  - tema_1.1__el_espejo_interior__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_1.1__el_espejo_interior__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_1.1__el_espejo_interior__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_1.1__el_espejo_interior__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_1.2__mis_valores_viales__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_1.2__mis_valores_viales__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_1.2__mis_valores_viales__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_1.2__mis_valores_viales__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_1.3__arqueologia_de_talentos__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_1.3__arqueologia_de_talentos__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_1.3__arqueologia_de_talentos__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_1.3__arqueologia_de_talentos__guion.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 6
+teach-laoz-lms  | DEBUG: Processing file tema_1.1__el_espejo_interior__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.1__el_espejo_interior__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.1__el_espejo_interior__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.1__el_espejo_interior__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_1.1__el_espejo_interior__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.1__el_espejo_interior__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.1__el_espejo_interior__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.1__el_espejo_interior__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_1.2__mis_valores_viales__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.2__mis_valores_viales__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.2__mis_valores_viales__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.2__mis_valores_viales__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_1.2__mis_valores_viales__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.2__mis_valores_viales__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.2__mis_valores_viales__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.2__mis_valores_viales__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_1.3__arqueologia_de_talentos__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.3__arqueologia_de_talentos__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.3__arqueologia_de_talentos__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.3__arqueologia_de_talentos__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_1.3__arqueologia_de_talentos__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.3__arqueologia_de_talentos__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.3__arqueologia_de_talentos__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_1/tema_1.3__arqueologia_de_talentos__ejercicios
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32mSaving module: teach-laoz-curso_proyecto_vida/modulo_2 - Módulo _2[39m
+teach-laoz-lms  | 2025-12-11 00:36:18 [[32minfo[39m]: [32m✓ Module saved: teach-laoz-curso_proyecto_vida/modulo_2[39m
+teach-laoz-lms  | DEBUG: Parsing topics for teach-laoz-curso_proyecto_vida/modulo_2 in /app/public/content/teach-laoz-curso_proyecto_vida/modulos/modulo_2
+teach-laoz-lms  | DEBUG: found 12 raw entries
+teach-laoz-lms  |  - tema_2.1__mi_ecosistema__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_2.1__mi_ecosistema__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_2.1__mi_ecosistema__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_2.1__mi_ecosistema__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_2.2__influencias_y_expectativas__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_2.2__influencias_y_expectativas__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_2.2__influencias_y_expectativas__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_2.2__influencias_y_expectativas__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_2.3__el_mundo_del_manana__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_2.3__el_mundo_del_manana__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_2.3__el_mundo_del_manana__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_2.3__el_mundo_del_manana__guion.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 6
+teach-laoz-lms  | DEBUG: Processing file tema_2.1__mi_ecosistema__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_2
+teach-laoz-lms  | DEBUG: NO Audio found for tema_2.1__mi_ecosistema__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.1__mi_ecosistema__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.1__mi_ecosistema__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_2.1__mi_ecosistema__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_2
+teach-laoz-lms  | DEBUG: NO Audio found for tema_2.1__mi_ecosistema__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.1__mi_ecosistema__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.1__mi_ecosistema__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_2.2__influencias_y_expectativas__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_2
+teach-laoz-lms  | DEBUG: NO Audio found for tema_2.2__influencias_y_expectativas__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.2__influencias_y_expectativas__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.2__influencias_y_expectativas__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_2.2__influencias_y_expectativas__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_2
+teach-laoz-lms  | DEBUG: NO Audio found for tema_2.2__influencias_y_expectativas__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.2__influencias_y_expectativas__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.2__influencias_y_expectativas__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_2.3__el_mundo_del_manana__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_2
+teach-laoz-lms  | DEBUG: NO Audio found for tema_2.3__el_mundo_del_manana__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.3__el_mundo_del_manana__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.3__el_mundo_del_manana__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_2.3__el_mundo_del_manana__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_2
+teach-laoz-lms  | DEBUG: NO Audio found for tema_2.3__el_mundo_del_manana__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.3__el_mundo_del_manana__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_2/tema_2.3__el_mundo_del_manana__ejercicios
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32mSaving module: teach-laoz-curso_proyecto_vida/modulo_3 - Módulo _3[39m
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32m✓ Module saved: teach-laoz-curso_proyecto_vida/modulo_3[39m
+teach-laoz-lms  | DEBUG: Parsing topics for teach-laoz-curso_proyecto_vida/modulo_3 in /app/public/content/teach-laoz-curso_proyecto_vida/modulos/modulo_3
+teach-laoz-lms  | DEBUG: found 12 raw entries
+teach-laoz-lms  |  - tema_3.1__el_mito_de_la_carrera_perfecta__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_3.1__el_mito_de_la_carrera_perfecta__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_3.1__el_mito_de_la_carrera_perfecta__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_3.1__el_mito_de_la_carrera_perfecta__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_3.2__exploracion_de_rutas__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_3.2__exploracion_de_rutas__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_3.2__exploracion_de_rutas__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_3.2__exploracion_de_rutas__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_3.3__toma_de_decisiones_inteligente__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_3.3__toma_de_decisiones_inteligente__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_3.3__toma_de_decisiones_inteligente__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_3.3__toma_de_decisiones_inteligente__guion.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 6
+teach-laoz-lms  | DEBUG: Processing file tema_3.1__el_mito_de_la_carrera_perfecta__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_3
+teach-laoz-lms  | DEBUG: NO Audio found for tema_3.1__el_mito_de_la_carrera_perfecta__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.1__el_mito_de_la_carrera_perfecta__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.1__el_mito_de_la_carrera_perfecta__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_3.1__el_mito_de_la_carrera_perfecta__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_3
+teach-laoz-lms  | DEBUG: NO Audio found for tema_3.1__el_mito_de_la_carrera_perfecta__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.1__el_mito_de_la_carrera_perfecta__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.1__el_mito_de_la_carrera_perfecta__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_3.2__exploracion_de_rutas__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_3
+teach-laoz-lms  | DEBUG: NO Audio found for tema_3.2__exploracion_de_rutas__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.2__exploracion_de_rutas__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.2__exploracion_de_rutas__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_3.2__exploracion_de_rutas__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_3
+teach-laoz-lms  | DEBUG: NO Audio found for tema_3.2__exploracion_de_rutas__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.2__exploracion_de_rutas__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.2__exploracion_de_rutas__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_3.3__toma_de_decisiones_inteligente__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_3
+teach-laoz-lms  | DEBUG: NO Audio found for tema_3.3__toma_de_decisiones_inteligente__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.3__toma_de_decisiones_inteligente__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.3__toma_de_decisiones_inteligente__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_3.3__toma_de_decisiones_inteligente__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_3
+teach-laoz-lms  | DEBUG: NO Audio found for tema_3.3__toma_de_decisiones_inteligente__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.3__toma_de_decisiones_inteligente__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_3/tema_3.3__toma_de_decisiones_inteligente__ejercicios
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32mSaving module: teach-laoz-curso_proyecto_vida/modulo_4 - Módulo _4[39m
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32m✓ Module saved: teach-laoz-curso_proyecto_vida/modulo_4[39m
+teach-laoz-lms  | DEBUG: Parsing topics for teach-laoz-curso_proyecto_vida/modulo_4 in /app/public/content/teach-laoz-curso_proyecto_vida/modulos/modulo_4
+teach-laoz-lms  | DEBUG: found 16 raw entries
+teach-laoz-lms  |  - tema_4.1__vision_de_futuro__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_4.1__vision_de_futuro__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_4.1__vision_de_futuro__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_4.1__vision_de_futuro__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_4.2__metas_smart__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_4.2__metas_smart__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_4.2__metas_smart__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_4.2__metas_smart__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_4.3__el_mapa_de_ruta__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_4.3__el_mapa_de_ruta__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_4.3__el_mapa_de_ruta__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_4.3__el_mapa_de_ruta__guion.md (isFile: true)
+teach-laoz-lms  |  - tema_4.4__resiliencia_y_adaptabilidad__contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_4.4__resiliencia_y_adaptabilidad__ejercicios.md (isFile: true)
+teach-laoz-lms  |  - tema_4.4__resiliencia_y_adaptabilidad__evaluacion.md (isFile: true)
+teach-laoz-lms  |  - tema_4.4__resiliencia_y_adaptabilidad__guion.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 8
+teach-laoz-lms  | DEBUG: Processing file tema_4.1__vision_de_futuro__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_4
+teach-laoz-lms  | DEBUG: NO Audio found for tema_4.1__vision_de_futuro__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.1__vision_de_futuro__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.1__vision_de_futuro__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_4.1__vision_de_futuro__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_4
+teach-laoz-lms  | DEBUG: NO Audio found for tema_4.1__vision_de_futuro__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.1__vision_de_futuro__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.1__vision_de_futuro__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_4.2__metas_smart__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_4
+teach-laoz-lms  | DEBUG: NO Audio found for tema_4.2__metas_smart__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.2__metas_smart__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.2__metas_smart__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_4.2__metas_smart__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_4
+teach-laoz-lms  | DEBUG: NO Audio found for tema_4.2__metas_smart__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.2__metas_smart__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.2__metas_smart__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_4.3__el_mapa_de_ruta__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_4
+teach-laoz-lms  | DEBUG: NO Audio found for tema_4.3__el_mapa_de_ruta__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.3__el_mapa_de_ruta__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.3__el_mapa_de_ruta__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_4.3__el_mapa_de_ruta__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_4
+teach-laoz-lms  | DEBUG: NO Audio found for tema_4.3__el_mapa_de_ruta__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.3__el_mapa_de_ruta__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.3__el_mapa_de_ruta__ejercicios
+teach-laoz-lms  | DEBUG: Processing file tema_4.4__resiliencia_y_adaptabilidad__contenido.md in module teach-laoz-curso_proyecto_vida/modulo_4
+teach-laoz-lms  | DEBUG: NO Audio found for tema_4.4__resiliencia_y_adaptabilidad__contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.4__resiliencia_y_adaptabilidad__contenido
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.4__resiliencia_y_adaptabilidad__contenido
+teach-laoz-lms  | DEBUG: Processing file tema_4.4__resiliencia_y_adaptabilidad__ejercicios.md in module teach-laoz-curso_proyecto_vida/modulo_4
+teach-laoz-lms  | DEBUG: NO Audio found for tema_4.4__resiliencia_y_adaptabilidad__ejercicios.md
+teach-laoz-lms  | DEBUG: Upserting topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.4__resiliencia_y_adaptabilidad__ejercicios
+teach-laoz-lms  | DEBUG: Success topic teach-laoz-curso_proyecto_vida/modulo_4/tema_4.4__resiliencia_y_adaptabilidad__ejercicios
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32m✓ Completed parsing 5 modules for teach-laoz-curso_proyecto_vida[39m
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32mParsed course: Seguridad Aplicada a .NET[39m
+teach-laoz-lms  | DEBUG: Parsing modules for security-dotnet
+teach-laoz-lms  | DEBUG: Course Path: /app/public/content/teach-laoz-curso_security
+teach-laoz-lms  | DEBUG: Checking modules dir: /app/public/content/teach-laoz-curso_security/modulos
+teach-laoz-lms  | DEBUG: Modules dir NOT FOUND
+teach-laoz-lms  | 2025-12-11 00:36:19 [[33mwarn[39m]: [33mNo modules directory found for security-dotnet at /app/public/content/teach-laoz-curso_security/modulos[39m
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32mParsed course: Principios SOLID en JavaScript[39m
+teach-laoz-lms  | DEBUG: Parsing modules for solid-javascript
+teach-laoz-lms  | DEBUG: Course Path: /app/public/content/teach-laoz-curso_solid_javascript
+teach-laoz-lms  | DEBUG: Checking modules dir: /app/public/content/teach-laoz-curso_solid_javascript/modulos
+teach-laoz-lms  | DEBUG: Modules dir EXISTS
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32mFound 11 modules for solid-javascript[39m
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_0 - Módulo _0[39m
+teach-laoz-lms  | 2025-12-11 00:36:19 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_0[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_0 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_0
+teach-laoz-lms  | DEBUG: found 6 raw entries
+teach-laoz-lms  |  - tema_0.1.1_clases_prototipos_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_0.1.2_composicion_herencia_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_0.2.1_testing_unitario_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_0.2.2_code_smells_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_0.3.1_metricas_calidad_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_0.4.1_evaluacion_diagnostica.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 6
+teach-laoz-lms  | DEBUG: Processing file tema_0.1.1_clases_prototipos_contenido.md in module solid-javascript/modulo_0
+teach-laoz-lms  | DEBUG: NO Audio found for tema_0.1.1_clases_prototipos_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_0/tema_0.1.1_clases_prototipos_contenido
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_0/tema_0.1.1_clases_prototipos_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_0.1.2_composicion_herencia_contenido.md in module solid-javascript/modulo_0
+teach-laoz-lms  | DEBUG: NO Audio found for tema_0.1.2_composicion_herencia_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_0/tema_0.1.2_composicion_herencia_contenido
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_0/tema_0.1.2_composicion_herencia_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_0.2.1_testing_unitario_contenido.md in module solid-javascript/modulo_0
+teach-laoz-lms  | DEBUG: NO Audio found for tema_0.2.1_testing_unitario_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_0/tema_0.2.1_testing_unitario_contenido
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_0/tema_0.2.1_testing_unitario_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_0.2.2_code_smells_contenido.md in module solid-javascript/modulo_0
+teach-laoz-lms  | DEBUG: NO Audio found for tema_0.2.2_code_smells_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_0/tema_0.2.2_code_smells_contenido
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_0/tema_0.2.2_code_smells_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_0.3.1_metricas_calidad_contenido.md in module solid-javascript/modulo_0
+teach-laoz-lms  | DEBUG: NO Audio found for tema_0.3.1_metricas_calidad_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_0/tema_0.3.1_metricas_calidad_contenido
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_0/tema_0.3.1_metricas_calidad_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_0.4.1_evaluacion_diagnostica.md in module solid-javascript/modulo_0
+teach-laoz-lms  | DEBUG: NO Audio found for tema_0.4.1_evaluacion_diagnostica.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_0/tema_0.4.1_evaluacion_diagnostica
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_0/tema_0.4.1_evaluacion_diagnostica
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_1 - Módulo _1[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_1[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_1 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_1
+teach-laoz-lms  | DEBUG: found 5 raw entries
+teach-laoz-lms  |  - INDICE_MODULO_1.md (isFile: true)
+teach-laoz-lms  |  - PROGRESO_MODULO_1.md (isFile: true)
+teach-laoz-lms  |  - tema_1.1.1_definicion_fundamentos_srp_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_1.1.2_cohesion_srp_contenido.md (isFile: true)
+teach-laoz-lms  |  - tema_1.1.3_violaciones_comunes_contenido.md (isFile: true)
+teach-laoz-lms  | DEBUG: Filtered files count: 5
+teach-laoz-lms  | DEBUG: Processing file INDICE_MODULO_1.md in module solid-javascript/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for INDICE_MODULO_1.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_1/INDICE_MODULO_1
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_1/INDICE_MODULO_1
+teach-laoz-lms  | DEBUG: Processing file PROGRESO_MODULO_1.md in module solid-javascript/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for PROGRESO_MODULO_1.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_1/PROGRESO_MODULO_1
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_1/PROGRESO_MODULO_1
+teach-laoz-lms  | DEBUG: Processing file tema_1.1.1_definicion_fundamentos_srp_contenido.md in module solid-javascript/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.1.1_definicion_fundamentos_srp_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_1/tema_1.1.1_definicion_fundamentos_srp_contenido
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_1/tema_1.1.1_definicion_fundamentos_srp_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_1.1.2_cohesion_srp_contenido.md in module solid-javascript/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.1.2_cohesion_srp_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_1/tema_1.1.2_cohesion_srp_contenido
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_1/tema_1.1.2_cohesion_srp_contenido
+teach-laoz-lms  | DEBUG: Processing file tema_1.1.3_violaciones_comunes_contenido.md in module solid-javascript/modulo_1
+teach-laoz-lms  | DEBUG: NO Audio found for tema_1.1.3_violaciones_comunes_contenido.md
+teach-laoz-lms  | DEBUG: Upserting topic solid-javascript/modulo_1/tema_1.1.3_violaciones_comunes_contenido
+teach-laoz-lms  | DEBUG: Success topic solid-javascript/modulo_1/tema_1.1.3_violaciones_comunes_contenido
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_2 - Módulo _2[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_2[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_2 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_2
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_3 - Módulo _3[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_3[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_3 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_3
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_4 - Módulo _4[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_4[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_4 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_4
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_5 - Módulo _5[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_5[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_5 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_5
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_6 - Módulo _6[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_6[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_6 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_6
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_7 - Módulo _7[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_7[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_7 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_7
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_8 - Módulo _8[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_8[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_8 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_8
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_9 - Módulo _9[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_9[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_9 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_9
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mSaving module: solid-javascript/modulo_10 - Módulo _10[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Module saved: solid-javascript/modulo_10[39m
+teach-laoz-lms  | DEBUG: Parsing topics for solid-javascript/modulo_10 in /app/public/content/teach-laoz-curso_solid_javascript/modulos/modulo_10
+teach-laoz-lms  | DEBUG: found 0 raw entries
+teach-laoz-lms  | DEBUG: Filtered files count: 0
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Completed parsing 11 modules for solid-javascript[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32mFound 11 courses[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Found 11 courses[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m============================================================[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m✓ Server running on http://localhost:7000[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m============================================================[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m[39m
+teach-laoz-lms  | [32mAvailable endpoints:[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  • Web App:        http://localhost:7000/app[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  • API:            http://localhost:7000/api[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  • Health Check:   http://localhost:7000/api/health[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  • Courses:        http://localhost:7000/api/courses[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m============================================================[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m[39m
+teach-laoz-lms  | [32mIndexed courses:[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  1. Comunicación Técnica Efectiva para Desarrolladores[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  2. Dibujo de 0 a Experto para Niños[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  3. Arquitectura de Software Avanzada y Detallada[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  4. Arquitectura Curricular: DevOps Engineer (Advanced)[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  5. Inteligencia Financiera y Finanzas del Hogar[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  6. Libro: Inteligencia Financiera y Económica[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  7. Curso Optimización Entrenamientos (Edición 2025)[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  8. Principios SOLID en Programación Orientada a Objetos[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  9. Curso: Proyecto de Vida[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  10. Seguridad Aplicada a .NET[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m  11. Principios SOLID en JavaScript[39m
+teach-laoz-lms  | 2025-12-11 00:36:20 [[32minfo[39m]: [32m[39m
+teach-laoz-lms  | [32m============================================================[39m

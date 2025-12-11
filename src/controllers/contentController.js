@@ -101,12 +101,28 @@ class ContentController {
     async getTopicEvaluation(req, res) {
         try {
             const topicId = decodeURIComponent(req.params.topicId);
+            logger.info(`Requested evaluation for topicId: ${topicId}`);
+
+            const topicData = await courseService.getTopicById(topicId); // Get topic first to debug
+            if (!topicData) {
+                 logger.warn(`Topic not found in DB: ${topicId}`);
+                 return res.status(404).json({ error: 'Topic not found' });
+            }
+
+            if (!topicData.evaluation_path) {
+                logger.warn(`Topic has no evaluation_path: ${topicId}`);
+                return res.status(404).json({ error: 'Evaluation not linked to topic' });
+            }
+            
+            logger.info(`Found evaluation path: ${topicData.evaluation_path}`);
+
             const content = await courseService.getEvaluationContent(topicId);
             
             if (!content) {
+                logger.warn(`Evaluation file missing at path: ${topicData.evaluation_path}`);
                 return res.status(404).json({
                     success: false,
-                    error: 'Evaluation not found'
+                    error: 'Evaluation file not found on disk'
                 });
             }
 

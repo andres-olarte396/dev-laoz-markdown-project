@@ -1,16 +1,19 @@
 // API Configuration
-const API_BASE = 'http://localhost:7000/api';
+const API_BASE = '/api';
 
 // State
 let currentCourse = null;
 let currentTopic = null;
 let currentTopicTitle = '';
+let activeCourseData = null;
 let courses = [];
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     checkBackendStatus();
-    loadCourses();
+    loadCourses().then(() => {
+        restoreState(); // Restore state only after courses loaded
+    });
 
     // Configure Marked.js
     if (window.marked) {
@@ -35,6 +38,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Persistence Logic
+function saveState() {
+    const state = {
+        courseId: currentCourse,
+        topicId: currentTopic,
+        topicTitle: currentTopicTitle
+    };
+    localStorage.setItem('lmsState', JSON.stringify(state));
+}
+
+function clearState() {
+    localStorage.removeItem('lmsState');
+}
+
+async function restoreState() {
+    const saved = localStorage.getItem('lmsState');
+    if (saved) {
+        try {
+            const state = JSON.parse(saved);
+            if (state.courseId) {
+                // Load course detail
+                await loadCourseDetail(state.courseId);
+                
+                // If topic was open, try to reopen it
+                if (state.topicId) {
+                    setTimeout(() => {
+                        const topicLink = document.querySelector(`.topic-item[onclick*="${state.topicId}"]`);
+                        if (topicLink) {
+                             topicLink.click();
+                        } else {
+                             loadTopicContent(state.topicId, null, null); 
+                        }
+                    }, 500);
+                }
+            }
+        } catch (e) {
+            console.error('Failed to restore state', e);
+        }
+    }
+}
 
 // Check backend status
 async function checkBackendStatus() {
@@ -64,6 +108,13 @@ async function loadCourses() {
         
         if (data.success && data.data) {
             courses = Array.isArray(data.data) ? data.data : Object.values(data.data);
+            
+            // Sort courses by creation date (descending - newest first)
+            courses.sort((a, b) => {
+                const dateA = new Date(a.created_at || 0);
+                const dateB = new Date(b.created_at || 0);
+                return dateB - dateA; // Descending order
+            });
             
             // Update stats
             document.getElementById('totalCourses').textContent = courses.length;
@@ -99,7 +150,8 @@ async function loadCourses() {
 // Load course detail
 async function loadCourseDetail(courseId) {
     currentCourse = courseId;
-    
+    saveState();
+
     // Update active state
     document.querySelectorAll('.course-item').forEach(item => {
         item.classList.remove('active');
@@ -122,6 +174,11 @@ async function loadCourseDetail(courseId) {
         
         if (data.success && data.data) {
             const course = data.data;
+            activeCourseData = course; // Store globally regarding navigation
+            console.log('DEBUG: Course Structure Received:', course);
+            if (course.modules) {
+                course.modules.forEach(m => console.log(`Module ${m.id} has ${m.topics ? m.topics.length : 0} topics`));
+            }
             
             // Update course info
             document.getElementById('courseTitle').textContent = course.title || courseId;
@@ -183,20 +240,37 @@ function renderTopics(topics) {
     
     return `
         <div class="topic-list">
-            ${topics.map(topic => `
-                <div class="topic-item" onclick="loadTopicContent('${topic.id}', '${topic.audio_path || ''}', '${topic.evaluation_path || ''}')">
-                    <span class="topic-title">📄 ${topic.title || 'Sin título'}</span>
-                    ${topic.audio_path ? '<span class="topic-badge">🎧 Audio</span>' : ''}
-                    ${topic.evaluation_path ? '<span class="topic-badge" style="background:var(--primary-color)">📝 Quiz</span>' : ''}
+            ${topics.map(topic => {
+                const safeAudio = (topic.audio_path || '').replace(/\\/g, '/');
+                const safeEval = (topic.evaluation_path || '').replace(/\\/g, '/');
+                const isCompleted = false; // TODO: Check completion status
+                
+                return `
+                <div class="topic-item ${isCompleted ? 'completed' : ''}" 
+                     onclick="loadTopicContent('${topic.id}', '${safeAudio}', '${safeEval}')">
+                    <div class="topic-status">
+                        ${isCompleted ? '✅' : '○'}
+                    </div>
+                    <span class="topic-title">${topic.title || 'Sin título'}</span>
+                    <div class="topic-badges">
+                        ${topic.audio_path ? '<span class="topic-badge">🎧 Audio</span>' : ''}
+                        ${topic.evaluation_path ? '<span class="topic-badge quiz">📝 Quiz</span>' : ''}
+                    </div>
                 </div>
-            `).join('')}
+                `;
+            }).join('')}
         </div>
     `;
 }
 
 // Load Topic Content
 async function loadTopicContent(topicId, audioPath, evalPath) {
+    console.log('DEBUG: loadTopicContent called', { topicId, audioPath, evalPath });
     currentTopic = topicId;
+    saveState();
+    
+    // Update Navigation logic
+    updateNavigationButtons();
     
     // Hide course detail, show topic view
     document.getElementById('courseDetail').style.display = 'none';
@@ -226,24 +300,37 @@ async function loadTopicContent(topicId, audioPath, evalPath) {
     }
 
     try {
-        // Encode topicId to handle slashes correctly
         const response = await fetch(`${API_BASE}/content/${encodeURIComponent(topicId)}`);
         const data = await response.json();
         
         if (data.success && data.data) {
             const topic = data.data;
             currentTopicTitle = topic.title; 
+            saveState(); // Update saved title
             
-            // Update audio button logic with fresh title
+            // Mark as viewed/completed (Progress)
+            try {
+                if (currentCourse && topic.module_id) {
+                     fetch(`${API_BASE}/progress/mark-complete`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            courseId: currentCourse, 
+                            moduleId: topic.module_id, 
+                            topicId: topicId 
+                        })
+                    }).then(r => r.json()).then(d => {
+                        if(d.success) console.log('Topic marked as completed');
+                    }).catch(err => console.warn('Silent progress error', err));
+                }
+            } catch (pErr) { console.warn('Progress logic error', pErr); }
+
             if (audioPath && btnAudio) {
                  btnAudio.onclick = () => setupAudioPlayer(topicId, topic.title);
             }
             
-            // Update eval button visibility if data refreshed confirms eval path
-            if (btnEval) {
-                if (topic.evaluation_path) {
-                    btnEval.style.display = 'inline-flex';
-                }
+            if (btnEval && topic.evaluation_path) {
+                btnEval.style.display = 'inline-flex';
             }
             
             let htmlContent = '';
@@ -253,7 +340,6 @@ async function loadTopicContent(topicId, audioPath, evalPath) {
                     throw new Error('La librería Marked.js no se ha cargado.');
                 }
 
-                // Determine base URL for images
                 const filePath = (topic.file_path || '').replace(/\\/g, '/');
                 const lastSlashIndex = filePath.lastIndexOf('/');
                 const relativeDir = lastSlashIndex !== -1 ? filePath.substring(0, lastSlashIndex + 1) : '';
@@ -262,7 +348,6 @@ async function loadTopicContent(topicId, audioPath, evalPath) {
                 const renderer = new marked.Renderer();
                 
                 renderer.image = function(token) {
-                    // Handle API v12
                     let href, title, text;
                     if (typeof token === 'object' && token !== null && !Array.isArray(token)) {
                         href = token.href; title = token.title; text = token.text;
@@ -338,9 +423,13 @@ async function loadTopicContent(topicId, audioPath, evalPath) {
 function showCourseDetailFromTopic() {
     document.getElementById('topicView').style.display = 'none';
     document.getElementById('courseDetail').style.display = 'block';
+    
+    // Reload course detail to refresh progress/stats?
+    if(currentCourse) loadCourseDetail(currentCourse);
 }
 
 function showWelcome() {
+    clearState();
     document.getElementById('welcomeScreen').style.display = 'block';
     document.getElementById('courseDetail').style.display = 'none';
     document.getElementById('topicView').style.display = 'none';
@@ -395,17 +484,6 @@ function setupAudioPlayer(topicId, title) {
     };
 }
 
-function toggleAudio() {
-    const playerContainer = document.getElementById('audioPlayerContainer');
-    if (playerContainer.style.display === 'none') {
-        if (currentTopic) {
-            setupAudioPlayer(currentTopic, currentTopicTitle);
-        }
-    } else {
-        hideAudioPlayer();
-    }
-}
-
 function hideAudioPlayer() {
     const playerContainer = document.getElementById('audioPlayerContainer');
     const audioPlayer = document.getElementById('mainAudioPlayer');
@@ -417,21 +495,98 @@ function showError(message) {
     console.error(message);
 }
 
-// Auto-refresh backend status every 30 seconds
+// Auto-refresh backend status
 setInterval(checkBackendStatus, 30000);
 
-// ==========================================
-// QUIZ LOGIC
-// ==========================================
+// Navigation Logic
+// Navigation Logic
+function updateNavigationButtons() {
+    const btnNext = document.getElementById('btnNextTopic');
+    const btnPrev = document.getElementById('btnPrevTopic');
+    
+    if(!btnNext || !btnPrev) return;
+    
+    if (!activeCourseData || !currentTopic) {
+        btnNext.style.display = 'none';
+        btnPrev.style.display = 'none';
+        return;
+    }
+    
+    let allTopics = [];
+    if(activeCourseData.modules) {
+        activeCourseData.modules.forEach(m => {
+            if(m.topics) allTopics.push(...m.topics);
+        });
+    }
+    
+    const currentIndex = allTopics.findIndex(t => t.id === currentTopic);
+    
+    // Check Next
+    if (currentIndex !== -1 && currentIndex < allTopics.length - 1) {
+        btnNext.style.display = 'inline-flex';
+        const nextTopic = allTopics[currentIndex + 1];
+        btnNext.title = `Siguiente: ${nextTopic.title}`;
+    } else {
+        btnNext.style.display = 'none';
+    }
 
+    // Check Prev
+    if (currentIndex > 0) {
+        btnPrev.style.display = 'inline-flex';
+        const prevTopic = allTopics[currentIndex - 1];
+        btnPrev.title = `Anterior: ${prevTopic.title}`;
+    } else {
+        btnPrev.style.display = 'none';
+    }
+}
+
+function loadNextTopic() {
+    if (!activeCourseData || !currentTopic) return;
+    
+    let allTopics = [];
+    if(activeCourseData.modules) {
+        activeCourseData.modules.forEach(m => {
+            if(m.topics) allTopics.push(...m.topics);
+        });
+    }
+    
+    const currentIndex = allTopics.findIndex(t => t.id === currentTopic);
+    if (currentIndex !== -1 && currentIndex < allTopics.length - 1) {
+        const nextTopic = allTopics[currentIndex + 1];
+        loadTopicContent(nextTopic.id, nextTopic.audio_path, nextTopic.evaluation_path);
+    }
+}
+
+function loadPrevTopic() {
+    if (!activeCourseData || !currentTopic) return;
+    
+    let allTopics = [];
+    if(activeCourseData.modules) {
+        activeCourseData.modules.forEach(m => {
+            if(m.topics) allTopics.push(...m.topics);
+        });
+    }
+    
+    const currentIndex = allTopics.findIndex(t => t.id === currentTopic);
+    if (currentIndex > 0) {
+        const prevTopic = allTopics[currentIndex - 1];
+        loadTopicContent(prevTopic.id, prevTopic.audio_path, prevTopic.evaluation_path);
+    }
+}
+
+// QUIZ LOGIC
 let currentQuizQuestions = [];
+let currentQuizTopicId = null;
 
 async function startQuiz() {
     if (!currentTopic) return;
     
+    currentQuizTopicId = currentTopic;
     const btnEval = document.getElementById('btnEvaluation');
     const originalText = btnEval.textContent;
     btnEval.textContent = '⏳ Cargando...';
+    
+    document.querySelector('.btn-submit-quiz').style.display = 'inline-block';
     
     try {
         const response = await fetch(`${API_BASE}/content/${encodeURIComponent(currentTopic)}/evaluation`);
@@ -440,11 +595,10 @@ async function startQuiz() {
         if (data.error) throw new Error(data.error);
         if (!data.markdown) throw new Error('Contenido vacío');
         
-        // Parse Markdown to Quiz Object
         currentQuizQuestions = parseQuizMarkdown(data.markdown);
         
         if (currentQuizQuestions.length === 0) {
-            alert('No se pudieron detectar preguntas en esta evaluación.');
+            alert('No se pudieron detectar preguntas en esta evaluación. Verifica el formato del archivo.');
             return;
         }
         
@@ -455,46 +609,115 @@ async function startQuiz() {
         console.error('Error starting quiz:', error);
         showError('No se pudo cargar la evaluación: ' + error.message);
     } finally {
-        btnEval.textContent = originalText; // Restore text
+        btnEval.textContent = originalText;
     }
 }
 
 function parseQuizMarkdown(markdown) {
+    const questions = [];
+    
+    const splitParts = markdown.split(/#{2,}\s*SOLUCIONARIO/i);
+    const questionsText = splitParts[0];
+    const solutionsText = splitParts[1] || '';
+    
+    const blocks = questionsText.split(/#{3}\s*Pregunta/i).slice(1); 
+    
+    blocks.forEach(block => {
+        const lines = block.trim().split('\n').filter(l => l.trim().length > 0);
+        
+        if(lines.length === 0) return;
+
+        const optionLinesIndices = [];
+        lines.forEach((line, idx) => {
+             if (line.match(/^\s*[a-eA-E]\s*[).]\s+/)) {
+                 optionLinesIndices.push(idx);
+             }
+        });
+        
+        if (optionLinesIndices.length === 0) return; 
+        
+        const firstOptionIdx = optionLinesIndices[0];
+        let qTextLines = lines.slice(0, firstOptionIdx);
+        
+        // Remove question numbering 1., 2., etc. even if it has markdown chars
+        if (qTextLines.length > 0) {
+             // Regex matches:
+             // ^\s*     Leading whitespace
+             // \d+      Number
+             // [:.]?    Optional separator
+             // \s*      Whitespace
+             // (?:[*_]{2,})?  Optional markdown start (** or __)
+             const numberingRegex = /^\s*\d+[:.]?\s*/;
+             qTextLines[0] = qTextLines[0].replace(numberingRegex, '');
+        }
+        
+        const questionText = qTextLines.join('\n').trim();
+        
+        const options = [];
+        for (let i = firstOptionIdx; i < lines.length; i++) {
+             const line = lines[i].trim();
+             const match = line.match(/^\s*([a-eA-E])\s*[).]\s+(.*)$/);
+             if (match) {
+                 options.push({
+                     text: match[2],
+                     letter: match[1].toLowerCase(),
+                     isCorrect: false
+                 });
+             }
+        }
+        
+        questions.push({
+            text: questionText,
+            options: options,
+            type: 'single'
+        });
+    });
+    
+    const solLines = solutionsText.split('\n');
+    solLines.forEach(line => {
+        const match = line.match(/(\d+)\.\s*\**([a-e])\s*\**([).])?/i);
+        if (match) {
+            const index = parseInt(match[1]) - 1;
+            const correctLetter = match[2].toLowerCase();
+            
+            if (questions[index]) {
+                questions[index].options.forEach(opt => {
+                    if (opt.letter === correctLetter) {
+                        opt.isCorrect = true;
+                    }
+                });
+            }
+        }
+    });
+
+    if (questions.length === 0) {
+        return parseLegacyQuizMarkdown(markdown);
+    }
+    
+    return questions;
+}
+
+function parseLegacyQuizMarkdown(markdown) {
     const questions = [];
     const lines = markdown.split('\n');
     let currentQuestion = null;
     
     lines.forEach(line => {
         const trimmed = line.trim();
-        
-        // Detect Question (Heading or Numbered List)
         if (trimmed.match(/^#{1,4}\s+/) || trimmed.match(/^\d+\.\s+/)) {
-            if (currentQuestion) {
-                questions.push(currentQuestion);
-            }
-            
+            if (currentQuestion) questions.push(currentQuestion);
             currentQuestion = {
                 text: trimmed.replace(/^[#\d\.]+\s+/, ''),
                 options: [],
-                type: 'single' // default
+                type: 'single'
             };
-        }
-        // Detect Options (- [ ] or - [x])
-        else if (currentQuestion && trimmed.match(/^-\s*\[([ xX])\]/)) {
+        } else if (currentQuestion && trimmed.match(/^-\s*\[([ xX])\]/)) {
             const isCorrect = trimmed.match(/^-\s*\[([xX])\]/);
             const text = trimmed.replace(/^-\s*\[([ xX])\]\s*/, '');
-            
-            currentQuestion.options.push({
-                text: text,
-                isCorrect: !!isCorrect
-            });
+            currentQuestion.options.push({ text: text, isCorrect: !!isCorrect });
         }
     });
-    
-    if (currentQuestion) {
-        questions.push(currentQuestion);
-    }
-    
+    if (currentQuestion) questions.push(currentQuestion);
     return questions.filter(q => q.options.length > 0);
 }
 
@@ -505,132 +728,151 @@ function renderQuiz(questions) {
     questions.forEach((q, index) => {
         const qDiv = document.createElement('div');
         qDiv.className = 'quiz-question';
+        qDiv.id = `q-${index}`; 
         qDiv.innerHTML = `
             <h3>${index + 1}. ${q.text}</h3>
             <div class="quiz-options">
                 ${q.options.map((opt, optIndex) => `
                     <div class="quiz-option">
-                        <input type="${hasMultipleCorrect(q) ? 'checkbox' : 'radio'}" 
-                               name="q${index}" 
-                               id="q${index}_o${optIndex}"
-                               value="${optIndex}">
-                        <label for="q${index}_o${optIndex}">${opt.text}</label>
+                        <input type="radio" 
+                               name="q-${index}" 
+                               id="q-${index}-opt-${opt.letter || optIndex}" 
+                               value="${opt.letter || optIndex}">
+                        <label for="q-${index}-opt-${opt.letter || optIndex}">
+                            ${opt.letter ? opt.letter.toUpperCase() + ') ' : ''}${opt.text}
+                        </label>
                     </div>
                 `).join('')}
             </div>
         `;
         quizBody.appendChild(qDiv);
     });
-    
-    document.querySelector('.btn-submit-quiz').style.display = 'block';
 }
 
-function hasMultipleCorrect(question) {
-    return question.options.filter(o => o.isCorrect).length > 1;
+function submitQuiz() {
+    let score = 0;
+    let total = currentQuizQuestions.length;
+    let results = [];
+    
+    currentQuizQuestions.forEach((q, index) => {
+        const selected = document.querySelector(`input[name="q-${index}"]:checked`);
+        let isCorrect = false;
+        
+        let correctOption = q.options.find(opt => opt.isCorrect);
+        let correctAnswerVal = correctOption ? (correctOption.letter || 'marked') : 'unknown';
+
+        if (selected) {
+            const selectedVal = selected.value;
+            // Compare letters or indices
+            if (correctOption && selectedVal === correctOption.letter) {
+                isCorrect = true;
+            } else if (correctOption && typeof correctOption.letter === 'undefined' && correctOption.isCorrect) {
+                // Legacy check
+                isCorrect = true; 
+            }
+        }
+        
+        if (isCorrect) score++;
+        
+        results.push({
+            questionId: index,
+            correct: isCorrect,
+            userAnswer: selected ? selected.value : null,
+            correctAnswer: correctAnswerVal
+        });
+        
+        // Visual Feedback
+        const questionDiv = document.getElementById(`q-${index}`);
+        if(questionDiv) {
+            if(isCorrect) {
+                questionDiv.style.borderLeft = "5px solid #22c55e"; 
+                questionDiv.style.background = "#f0fdf4";
+            } else {
+                 questionDiv.style.borderLeft = "5px solid #ef4444"; 
+                 questionDiv.style.background = "#fef2f2";
+                 
+                 const note = document.createElement('div');
+                 note.style.color = '#ef4444';
+                 note.style.marginTop = '10px';
+                 note.style.fontWeight = 'bold';
+                 note.innerText = `Respuesta correcta: ${correctAnswerVal.toUpperCase()}`;
+                 if(!questionDiv.querySelector('div[style*="color"]')) {
+                     questionDiv.appendChild(note);
+                 }
+            }
+        }
+    });
+    
+    const percentage = Math.round((score / total) * 100);
+    const passed = percentage >= 70;
+    
+    // Save Result
+    if (currentCourse && currentQuizTopicId) {
+        fetch(`${API_BASE}/progress/submit-evaluation`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                courseId: currentCourse,
+                topicId: currentQuizTopicId,
+                score: percentage,
+                passed: passed,
+                details: results
+            })
+        }).then(r => r.json())
+          .then(d => console.log('Quiz saved', d))
+          .catch(e => console.error('Error saving quiz', e));
+    }
+    
+    showQuizResults(score, total, percentage);
+    document.querySelector('.btn-submit-quiz').style.display = 'none';
+}
+
+function showQuizResults(score, total, percentage) {
+    const quizBody = document.getElementById('quizBody');
+    const passed = percentage >= 70;
+    
+    const summaryDiv = document.createElement('div');
+    summaryDiv.className = 'quiz-result';
+    summaryDiv.innerHTML = `
+        <div class="score-circle" style="background: conic-gradient(${passed ? '#22c55e' : '#ef4444'} ${percentage}%, #e2e8f0 0)">
+            <span style="font-size: 1.5rem; font-weight: bold; color: white;">${percentage}%</span>
+        </div>
+        <h3>${passed ? '¡Felicitaciones!' : 'Sigue practicando'}</h3>
+        <p>Has respondido correctamente ${score} de ${total} preguntas.</p>
+    `;
+    
+    quizBody.insertBefore(summaryDiv, quizBody.firstChild);
+    quizBody.scrollTop = 0;
 }
 
 function closeQuiz() {
     document.getElementById('quizModal').style.display = 'none';
 }
 
-async function submitQuiz() {
-    let score = 0;
-    const results = [];
-    
-    currentQuizQuestions.forEach((q, index) => {
-        const selectedInputs = document.querySelectorAll(`input[name="q${index}"]:checked`);
-        const selectedIndices = Array.from(selectedInputs).map(i => parseInt(i.value));
-        
-        const correctIndices = q.options
-            .map((o, i) => o.isCorrect ? i : -1)
-            .filter(i => i !== -1);
-            
-        const isCorrect = 
-            selectedIndices.length === correctIndices.length &&
-            selectedIndices.every(val => correctIndices.includes(val));
-            
-        if (isCorrect) score++;
-        
-        results.push({
-            question: q.text,
-            isCorrect: isCorrect,
-            selected: selectedIndices,
-            correct: correctIndices
-        });
-        
-        const qDiv = document.querySelectorAll('.quiz-question')[index];
-        const optionsDivs = qDiv.querySelectorAll('.quiz-option');
-        
-        optionsDivs.forEach((optDiv, optIndex) => {
-            optDiv.classList.remove('correct-answer', 'wrong-answer');
-            if (correctIndices.includes(optIndex)) {
-                optDiv.classList.add('correct-answer');
-            }
-            if (selectedIndices.includes(optIndex) && !correctIndices.includes(optIndex)) {
-                optDiv.classList.add('wrong-answer');
-            }
-        });
-    });
-
-    // Save to Backend
-    const btnSubmit = document.querySelector('.btn-submit-quiz');
-    const originalText = btnSubmit.textContent;
-    btnSubmit.textContent = 'Guardando...';
-    btnSubmit.disabled = true;
-
-    try {
-        const response = await fetch(`${API_BASE}/progress/submit-evaluation`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                topicId: currentTopic,
-                score: score,
-                maxScore: currentQuizQuestions.length,
-                answers: results,
-                timeSpent: 0 // TODO: Add timer logic
-            })
-        });
-        
-        if (!response.ok) throw new Error('Failed to save progress');
-        
-        // Mark topic as complete automatically if passed?
-        // Let's leave that optional for now.
-        
-    } catch (error) {
-        console.error('Error saving quiz result:', error);
-        // Don't block UI, just log error
-    } finally {
-        btnSubmit.textContent = originalText;
-        btnSubmit.disabled = false;
-    }
-    
-    const percentage = Math.round((score / currentQuizQuestions.length) * 100);
-    showQuizResults(score, currentQuizQuestions.length, percentage);
-}
-
-function showQuizResults(score, total, percentage) {
-    const btnSubmit = document.querySelector('.btn-submit-quiz');
-    btnSubmit.style.display = 'none';
-    
-    const quizBody = document.getElementById('quizBody');
-    const resultDiv = document.createElement('div');
-    resultDiv.className = 'quiz-result';
-    resultDiv.innerHTML = `
-        <div class="score-circle" style="--percentage: ${percentage}%; --primary-color: ${percentage >= 70 ? '#10b981' : '#ef4444'}">
-            <span class="score-text" style="color: ${percentage >= 70 ? '#10b981' : '#ef4444'}">${percentage}%</span>
-        </div>
-        <h3>Has acertado ${score} de ${total} preguntas</h3>
-        <p>${percentage >= 70 ? '¡Excelente trabajo! 🎉' : 'Sigue repasando 💪'}</p>
-        <button class="btn-action" onclick="closeQuiz()">Cerrar</button>
-    `;
-    
-    quizBody.insertBefore(resultDiv, quizBody.firstChild);
-    quizBody.scrollTop = 0;
-}
-
 window.onclick = function(event) {
     const modal = document.getElementById('quizModal');
     if (event.target == modal) {
-        closeQuiz();
+        modal.style.display = "none";
+    }
+}
+
+// Toggle Sidebar
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.content');
+    const toggleBtn = document.getElementById('btnToggleSidebar');
+    const toggleIcon = toggleBtn.querySelector('ion-icon');
+    const showBtn = document.getElementById('btnShowSidebar');
+    
+    sidebar.classList.toggle('collapsed');
+    
+    if (sidebar.classList.contains('collapsed')) {
+        toggleIcon.setAttribute('name', 'chevron-forward-outline');
+        toggleBtn.setAttribute('title', 'Mostrar panel');
+        showBtn.style.display = 'flex'; // Show floating button
+    } else {
+        toggleIcon.setAttribute('name', 'chevron-back-outline');
+        toggleBtn.setAttribute('title', 'Ocultar panel');
+        showBtn.style.display = 'none'; // Hide floating button
     }
 }

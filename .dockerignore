@@ -1,0 +1,53 @@
+# Node modules (will be installed in container)
+node_modules/
+
+# Git files
+.git/
+.gitignore
+
+# Logs
+*.log
+logs/
+server_*.log
+debug_scan.log
+
+# Temporary files
+temp_*.txt
+temp_*.json
+*.tmp
+
+# Development files
+*.md
+!README.md
+docs/
+
+# Test files
+test/
+*.test.js
+check-*.js
+check_*.js
+debug-*.js
+debug_*.js
+debugContent.js
+dump_schema.js
+get-topic.js
+migrate.js
+migrate_results.js
+update-audio.js
+update_plan.js
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore

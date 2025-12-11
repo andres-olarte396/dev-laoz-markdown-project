@@ -56,14 +56,14 @@ router.post('/courses/scan', (req, res) => courseController.scanCourses(req, res
 // CONTENT ROUTES
 // ============================================
 
-// GET /api/content/:topicId - Get topic content
-router.get('/content/:topicId(*)', (req, res) => contentController.getTopicContent(req, res));
+// GET /api/content/:topicId/evaluation - Get evaluation markdown
+router.get('/content/:topicId(*)/evaluation', (req, res) => contentController.getTopicEvaluation(req, res));
 
 // GET /api/content/:topicId/raw - Get raw markdown
 router.get('/content/:topicId(*)/raw', (req, res) => contentController.getRawContent(req, res));
 
-// GET /api/content/:topicId/evaluation - Get evaluation markdown
-router.get('/content/:topicId(*)/evaluation', (req, res) => contentController.getTopicEvaluation(req, res));
+// GET /api/content/:topicId - Get topic content
+router.get('/content/:topicId(*)', (req, res) => contentController.getTopicContent(req, res));
 
 // GET /api/audio/:topicId - Stream audio file
 router.get('/audio/:topicId(*)', (req, res) => contentController.getTopicAudio(req, res));

@@ -55,13 +55,23 @@
         <aside class="sidebar">
           <div class="sidebar-header">
             <h2>Mis Cursos</h2>
-            <button
-              class="btn-refresh"
-              onclick="loadCourses()"
-              title="Actualizar"
-            >
-              <ion-icon name="refresh-outline"></ion-icon>
-            </button>
+            <div style="display: flex; gap: 8px">
+              <button
+                class="btn-refresh"
+                onclick="toggleSidebar()"
+                title="Ocultar panel"
+                id="btnToggleSidebar"
+              >
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </button>
+              <button
+                class="btn-refresh"
+                onclick="loadCourses()"
+                title="Actualizar"
+              >
+                <ion-icon name="refresh-outline"></ion-icon>
+              </button>
+            </div>
           </div>
           <div id="courseList" class="course-list">
             <!-- Course Items Injected Here -->
@@ -152,6 +162,22 @@
                 >
                   <ion-icon name="create-outline"></ion-icon> Realizar Quiz
                 </button>
+                <button
+                  id="btnPrevTopic"
+                  class="btn-back-course"
+                  onclick="loadPrevTopic()"
+                  style="display: none; margin-right: 5px"
+                >
+                  ← Anterior
+                </button>
+                <button
+                  id="btnNextTopic"
+                  class="btn-back-course"
+                  onclick="loadNextTopic()"
+                  style="display: none"
+                >
+                  Siguiente →
+                </button>
               </div>
             </div>
 
@@ -160,6 +186,17 @@
             </div>
           </div>
         </main>
+
+        <!-- Floating button to show sidebar when collapsed -->
+        <button
+          class="btn-show-sidebar"
+          id="btnShowSidebar"
+          onclick="toggleSidebar()"
+          style="display: none;"
+          title="Mostrar panel de cursos"
+        >
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
       </div>
 
       <!-- Footer -->
@@ -198,21 +235,10 @@
           <!-- Questions Injected Here -->
         </div>
         <div class="modal-footer">
-          <button class="btn-submit-quiz action-btn" onclick="submitQuiz()">
+          <button class="btn-submit-quiz" onclick="submitQuiz()">
             Enviar Respuestas
           </button>
-          <button
-            onclick="closeQuiz()"
-            style="
-              background: transparent;
-              border: 1px solid #666;
-              color: var(--dark);
-              padding: 8px 16px;
-              border-radius: 4px;
-              cursor: pointer;
-              margin-left: 10px;
-            "
-          >
+          <button class="btn-close-modal-action" onclick="closeQuiz()">
             Cerrar
           </button>
         </div>

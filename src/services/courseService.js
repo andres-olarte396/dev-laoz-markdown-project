@@ -155,7 +155,12 @@ class CourseService {
 
             const moduleEntries = fs.readdirSync(modulesDir, { withFileTypes: true })
                 .filter(entry => entry.isDirectory() && entry.name.startsWith('modulo'))
-                .sort((a, b) => a.name.localeCompare(b.name));
+                .sort((a, b) => {
+                    // Extract module numbers for proper numeric sorting
+                    const numA = parseInt(a.name.match(/modulo[ _-]?(\d+)/i)?.[1] || '0');
+                    const numB = parseInt(b.name.match(/modulo[ _-]?(\d+)/i)?.[1] || '0');
+                    return numA - numB;
+                });
 
             logger.info(`Found ${moduleEntries.length} modules for ${courseId}`);
 
@@ -218,56 +223,153 @@ class CourseService {
      */
     async parseAndSaveTopics(moduleId, modulePath) {
         try {
-            const files = fs.readdirSync(modulePath, { withFileTypes: true })
+            console.log(`DEBUG: Parsing topics for ${moduleId} in ${modulePath}`);
+            const rawFiles = fs.readdirSync(modulePath, { withFileTypes: true });
+            console.log(`DEBUG: found ${rawFiles.length} raw entries`);
+            rawFiles.forEach(f => console.log(` - ${f.name} (isFile: ${f.isFile()})`));
+
+            const files = rawFiles
                 .filter(entry => entry.isFile() && entry.name.endsWith('.md'))
+                // Filter out auxiliary files that shouldn't be standalone topics
+                .filter(entry => !entry.name.endsWith('_guion.md') && !entry.name.endsWith('_evaluacion.md'))
                 .sort((a, b) => a.name.localeCompare(b.name));
+
+            console.log(`DEBUG: Filtered files count: ${files.length}`);
+            fs.appendFileSync('debug_scan.log', `Module ${moduleId} - Filtered files: ${files.length}\n`);
+            files.forEach(f => fs.appendFileSync('debug_scan.log', `  - ${f.name}\n`));
 
             let orderIndex = 0;
 
             for (const file of files) {
-                const topicId = `${moduleId}/${file.name.replace('.md', '')}`;
-                const filePath = path.join(modulePath, file.name);
-                
-                // Check for associated audio file (mp3 or wav)
-                const mp3Name = file.name.replace('.md', '.mp3');
-                const wavName = file.name.replace('.md', '.wav');
-                
-                const mp3Path = path.join(modulePath, mp3Name);
-                const wavPath = path.join(modulePath, wavName);
-                
-                let relativeAudioPath = null;
-                
-                if (fs.existsSync(mp3Path)) {
-                    relativeAudioPath = path.relative(this.contentDir, mp3Path);
-                } else if (fs.existsSync(wavPath)) {
-                    relativeAudioPath = path.relative(this.contentDir, wavPath);
+                try {
+                    console.log(`DEBUG: Processing file ${file.name} in module ${moduleId}`);
+                    const topicId = `${moduleId}/${file.name.replace('.md', '')}`;
+                    const filePath = path.join(modulePath, file.name);
+                    
+                    // Check for associated audio file (mp3, wav, or m4a)
+                    const mp3Name = file.name.replace('.md', '.mp3');
+                    const wavName = file.name.replace('.md', '.wav');
+                    const m4aName = file.name.replace('.md', '.m4a');
+                    
+                    // Alternative pattern: tema_X_contenido.md -> tema_X_audio.wav/mp3/m4a
+                    const altWavName = file.name.replace('_contenido.md', '_audio.wav').replace('.md', '_audio.wav');
+                    const altMp3Name = file.name.replace('_contenido.md', '_audio.mp3').replace('.md', '_audio.mp3');
+                    const altM4aName = file.name.replace('_contenido.md', '_audio.m4a').replace('.md', '_audio.m4a');
+                    
+                    // Pattern for guion files: tema_X_contenido.md -> tema_X_guion.m4a
+                    const guionM4aName = file.name.replace('_contenido.md', '_guion.m4a').replace('.md', '_guion.m4a');
+                    const guionMp3Name = file.name.replace('_contenido.md', '_guion.mp3').replace('.md', '_guion.mp3');
+                    const guionWavName = file.name.replace('_contenido.md', '_guion.wav').replace('.md', '_guion.wav');
+
+                    const mp3Path = path.join(modulePath, mp3Name);
+                    const wavPath = path.join(modulePath, wavName);
+                    const m4aPath = path.join(modulePath, m4aName);
+                    const altWavPath = path.join(modulePath, altWavName);
+                    const altMp3Path = path.join(modulePath, altMp3Name);
+                    const altM4aPath = path.join(modulePath, altM4aName);
+                    const guionM4aPath = path.join(modulePath, guionM4aName);
+                    const guionMp3Path = path.join(modulePath, guionMp3Name);
+                    const guionWavPath = path.join(modulePath, guionWavName);
+                    
+                    let relativeAudioPath = null;
+                    
+                    // Check all possible audio file patterns
+                    if (fs.existsSync(mp3Path)) {
+                        console.log(`DEBUG: Found MP3 for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, mp3Path);
+                    } else if (fs.existsSync(wavPath)) {
+                        console.log(`DEBUG: Found WAV for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, wavPath);
+                    } else if (fs.existsSync(m4aPath)) {
+                        console.log(`DEBUG: Found M4A for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, m4aPath);
+                    } else if (fs.existsSync(altWavPath)) {
+                        console.log(`DEBUG: Found Alt WAV for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, altWavPath);
+                    } else if (fs.existsSync(altMp3Path)) {
+                        console.log(`DEBUG: Found Alt MP3 for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, altMp3Path);
+                    } else if (fs.existsSync(altM4aPath)) {
+                        console.log(`DEBUG: Found Alt M4A for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, altM4aPath);
+                    } else if (fs.existsSync(guionM4aPath)) {
+                        console.log(`DEBUG: Found Guion M4A for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, guionM4aPath);
+                    } else if (fs.existsSync(guionMp3Path)) {
+                        console.log(`DEBUG: Found Guion MP3 for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, guionMp3Path);
+                    } else if (fs.existsSync(guionWavPath)) {
+                        console.log(`DEBUG: Found Guion WAV for ${file.name}`);
+                        relativeAudioPath = path.relative(this.contentDir, guionWavPath);
+                    } else {
+                         console.log(`DEBUG: NO Audio found for ${file.name}`);
+                    }
+
+                    // Check for associated evaluation file
+                    // Try multiple patterns
+                    let evalName = file.name.replace('.md', '_evaluacion.md'); // default: topic.md -> topic_evaluacion.md
+                    let foundEval = false;
+
+                    // Check default pattern first
+                    if (fs.existsSync(path.join(modulePath, evalName))) {
+                        foundEval = true;
+                    }
+
+                    // If not found and file ends in _contenido.md, try replacing that suffix
+                    if (!foundEval && file.name.endsWith('_contenido.md')) {
+                        const altName = file.name.replace('_contenido.md', '_evaluacion.md');
+                        if (fs.existsSync(path.join(modulePath, altName))) {
+                            evalName = altName;
+                            foundEval = true;
+                        }
+                    }
+                    
+                    // If still not found, check if the file ITSELF is an evaluation (edge case where evaluation is listed as a topic)
+                    // But we usually want to link it to the content. 
+                    // If 'file' is '..._evaluacion.md', we don't need to look for another evaluation.
+                    if (file.name.endsWith('_evaluacion.md')) {
+                        // This file IS an evaluation. Ideally it shouldn't be a primary topic if it's auxiliary.
+                        // But if it IS scanned as a topic, it's its own content.
+                        evalName = null; 
+                    } else if (!foundEval) {
+                        evalName = null;
+                    }
+
+                    let evalPath = null;
+                    let relativeEvalPath = null;
+
+                    if (evalName) {
+                        evalPath = path.join(modulePath, evalName);
+                        if (fs.existsSync(evalPath)) {
+                            relativeEvalPath = path.relative(this.contentDir, evalPath);
+                        }
+                    }
+
+                    // Get title from file
+                    const title = await this.getTopicTitle(filePath, file.name);
+
+                    const topicData = {
+                        id: topicId,
+                        module_id: moduleId,
+                        title: title,
+                        file_path: path.relative(this.contentDir, filePath),
+                        audio_path: relativeAudioPath,
+                        evaluation_path: relativeEvalPath,
+                        order_index: orderIndex++,
+                        estimated_minutes: 0 // TODO: Calculate from content length
+                    };
+
+                    console.log(`DEBUG: Upserting topic ${topicData.id}`);
+                    fs.appendFileSync('debug_scan.log', `Upserting: ${topicData.id}\n`);
+                    
+                    await dbService.upsertTopic(topicData);
+                    
+                    console.log(`DEBUG: Success topic ${topicData.id}`);
+                    fs.appendFileSync('debug_scan.log', `Success: ${topicData.id}\n`);
+                } catch (topicError) {
+                    console.error(`FAILED to process file ${file.name}:`, topicError);
+                    fs.appendFileSync('debug_scan.log', `ERROR processing ${file.name}: ${topicError.message}\n`);
                 }
-
-                // Check for associated evaluation file
-                // Convention: topic_name.md -> topic_name_evaluacion.md
-                const evalName = file.name.replace('.md', '_evaluacion.md');
-                const evalPath = path.join(modulePath, evalName);
-                let relativeEvalPath = null;
-
-                if (fs.existsSync(evalPath)) {
-                    relativeEvalPath = path.relative(this.contentDir, evalPath);
-                }
-
-                // Get title from file
-                const title = await this.getTopicTitle(filePath, file.name);
-
-                const topicData = {
-                    id: topicId,
-                    module_id: moduleId,
-                    title: title,
-                    file_path: path.relative(this.contentDir, filePath),
-                    audio_path: relativeAudioPath,
-                    evaluation_path: relativeEvalPath,
-                    order_index: orderIndex++,
-                    estimated_minutes: 0 // TODO: Calculate from content length
-                };
-
-                await dbService.upsertTopic(topicData);
             }
 
             // Also check subdirectories (Actividades, Material, Evaluaciones)
@@ -315,19 +417,23 @@ class CourseService {
      * Get topic title from markdown file
      */
     async getTopicTitle(filePath, fallbackName) {
-        try {
-            const content = fs.readFileSync(filePath, 'utf-8');
-            const titleMatch = content.match(/^#\s+(.+)$/m);
-            
-            if (titleMatch) {
-                return titleMatch[1].trim();
-            }
-        } catch (error) {
-            logger.warn(`Could not read title from ${filePath}`);
-        }
+        // User explicitly requested to use filename
+        // Remove .md extension
+        let name = fallbackName.replace(/\.md$/i, '');
         
-        // Fallback to filename
-        return fallbackName.replace('.md', '').replace(/_/g, ' ');
+        let prefix = "";
+        if (name.match(/(__|_)ejercicios$/i)) {
+            prefix = "📝 "; // Exercise icon
+        }
+
+        // Remove common suffixes to make it cleaner but still distinct
+        name = name.replace(/(__|_)(contenido|evaluacion|ejercicios|guion)$/i, '');
+        
+        // Replace separators with spaces
+        name = name.replace(/_+/g, ' ');
+        
+        // Capitalize first letter
+        return prefix + name.charAt(0).toUpperCase() + name.slice(1);
     }
 
     /**
@@ -335,6 +441,13 @@ class CourseService {
      */
     async getAllCourses() {
         return await dbService.getAllCourses();
+    }
+
+    /**
+     * Get topic by ID
+     */
+    async getTopicById(topicId) {
+        return await dbService.getTopicById(topicId);
     }
 
     /**
